@@ -19,7 +19,6 @@ const Form = () => {
     console.log({ ...data, cover });
   });
 
-  console.log('cover', cover);
 
   return (
     <FormProvider {...methods}>

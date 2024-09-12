@@ -7,14 +7,14 @@ import Container from '../../common/Container/Container';
 import Modal from '../../common/Modal/Modal';
 
 const HomePage = () => {
-  const [isShowingModal, toggle] = useModal();
+  const [isShowingModal, open, close] = useModal();
 
   return (
     <>
       <Typography tag='h1'>Movie app</Typography>
       <Container>
-        <Button onClick={toggle}>Добавить фильм</Button>
-        <Modal show={isShowingModal} onCloseButtonClick={toggle}>
+        <Button onClick={open}>Добавить фильм</Button>
+        <Modal closeModal={close} isShowing={isShowingModal}>
           <Form />
         </Modal>
       </Container>

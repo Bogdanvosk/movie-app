@@ -30,8 +30,6 @@ const Input = ({
     };
   };
 
-  console.log(validate());
-
   return (
     <>
       <input
