@@ -1,7 +1,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  gap: 25px 30px;
 
   @include tablet {
     gap: 1.94rem 1.25rem;
@@ -11,5 +11,9 @@
     display: flex;
     flex-direction: column;
     gap: 1.88rem;
+  }
+
+  @include mobile {
+    gap: 1.08rem;
   }
 }

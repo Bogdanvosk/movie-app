@@ -12,22 +12,41 @@ const Input = ({
   isRequired = false,
   className = '',
 }) => {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
-  // TODO: validation logic
-  // name === 'name' --- val.length should be more than 0
-  // name === 'year' --- val && val.length should be less or equal than 4
-  // name === 'duration' --- val && val.length should be less or equal than 3
+  const validate = () => {
+    if (name === 'year')
+      return { value: 4, message: 'Некорректный год выпуска' };
+
+    if (name === 'duration')
+      return { value: 3, message: 'Некорректная длительность' };
+
+    return {
+      value: null,
+      message: 'Обязательное поле',
+    };
+  };
+
+  console.log(validate());
 
   return (
-    <input
-      {...register(name, {
-        required: isRequired,
-      })}
-      type={type}
-      placeholder={placeholder}
-      className={cn(s.input, className)}
-    />
+    <>
+      <input
+        {...register(name, {
+          required: { value: isRequired, message: 'Обязательное поле' },
+          maxLength: validate(),
+        })}
+        type={type}
+        placeholder={placeholder}
+        className={cn(s.input, { [s.incorrect]: errors[name] }, className)}
+      />
+      <p className={cn(s.error, { [s.show]: errors[name] })}>
+        {validate().message}
+      </p>
+    </>
   );
 };
 

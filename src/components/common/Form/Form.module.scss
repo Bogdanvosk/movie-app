@@ -20,5 +20,11 @@
 
 .button {
   grid-column: span 2;
+  width: 25%;
+  margin-left: auto;
   padding: 0.8rem;
+
+  @include tablet {
+    width: 100%;
+  }
 }

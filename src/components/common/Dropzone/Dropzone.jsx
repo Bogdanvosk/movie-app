@@ -18,7 +18,6 @@ const Dropzone = ({ onSetCover, className = '' }) => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    noDragEventsBubbling: true,
     maxFiles: 1,
     accept: {
       'image/png': ['.jpeg', '.jpg', '.png'],
