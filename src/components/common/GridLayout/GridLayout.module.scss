@@ -1,0 +1,15 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+
+  @include tablet {
+    gap: 1.94rem 1.25rem;
+  }
+
+  @media (max-width: $md) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.88rem;
+  }
+}

@@ -1,0 +1,14 @@
+.wrapper {
+	position: absolute;
+	z-index: 5;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+	position: static;
+	z-index: 10;
+}
