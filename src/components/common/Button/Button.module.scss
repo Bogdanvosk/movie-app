@@ -1,0 +1,23 @@
+.button {
+  padding: 0.5rem 1rem;
+  font-size: 20px;
+  font-family: inherit;
+  color: $color-black;
+  background-color: $color-beige-200;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  @include hover {
+    background-color: darken($color-beige-200, 10%);
+  }
+
+  &:active {
+    background-color: darken($color-beige-200, 20%);
+  }
+
+@include mobile {
+    font-size: 1rem;
+  }
+}

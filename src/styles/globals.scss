@@ -1,3 +1,11 @@
-@use 'reset';
-@use 'variables';
-@use 'mixins';
+body {
+  font-family: $primary-font;
+  background-color: $color-beige-100;
+  scroll-behavior: smooth;
+}
+
+textarea,
+button,
+input {
+  font-family: inherit;
+}
