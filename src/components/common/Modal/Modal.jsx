@@ -1,17 +1,16 @@
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 
+import { useRef } from 'react';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 
-import styles from './Modal.module.scss';
-import { useRef } from 'react';
+import s from './Modal.module.scss';
 
 const Modal = ({ isShowing, closeModal, children }) => {
   const modalRef = useRef(null);
 
-
-  useOutsideClick(modalRef, () => {
-    // TODO: close modal
+  useOutsideClick(modalRef, (e) => {
+    e.target.type !== 'button' && closeModal();
   });
 
   if (!isShowing) {
@@ -19,15 +18,13 @@ const Modal = ({ isShowing, closeModal, children }) => {
   }
 
   return createPortal(
-    <div className={styles.wrapper}>
-      <div className={styles.modal} ref={modalRef}>
+    <div className={s.wrapper}>
+      <div className={s.modal} ref={modalRef}>
         {children}
         {/* <div className='body'>
           Click on the close button to close the modal.
-        </div>
-        <div className='footer'>
-          <button onClick={onCloseButtonClick}>Close Modal</button>
-        </div> */}
+        </div>*/}
+        <span className={s.delete} onClick={closeModal}></span>
       </div>
     </div>,
     document.body

@@ -4,13 +4,12 @@
   gap: 25px 30px;
 
   @include tablet {
-    gap: 1.94rem 1.25rem;
+    gap: 1.25rem;
   }
 
-  @media (max-width: $md) {
+  @media (max-width: $sm-xs) {
     display: flex;
     flex-direction: column;
-    gap: 1.88rem;
   }
 
   @include mobile {

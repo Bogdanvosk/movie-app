@@ -6,12 +6,16 @@
   height: 200px;
   background-color: $color-beige-100;
   border: 2px dashed transparent;
-  border-radius: 20px;
+  border-radius: 10px;
   transition: background-color 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
 
   @include hover {
     background-color: $color-beige-200;
+  }
+
+  @include tablet {
+    height: auto;
   }
 }
 
@@ -20,8 +24,14 @@
   font-size: 1.13rem;
   line-height: 1.91rem;
   text-align: center;
+
+  @include mobile {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 }
 
+.dropzone:active,
 .active {
   background-color: darken($color-beige-200, 10%);
   border-color: $color-black;
