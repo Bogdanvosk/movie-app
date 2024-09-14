@@ -1,4 +1,7 @@
 import useModal from '../../../hooks/useModal';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchMovies } from '../../../store/features/movies';
 
 import Typography from '../../common/Typography/Typography';
 import Button from '../../common/Button/Button';
@@ -8,6 +11,11 @@ import Modal from '../../common/Modal/Modal';
 
 const HomePage = () => {
   const [isShowingModal, open, close] = useModal();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, []);
 
   return (
     <>
@@ -15,7 +23,7 @@ const HomePage = () => {
       <Container>
         <Button onClick={open}>Добавить фильм</Button>
         <Modal closeModal={close} isShowing={isShowingModal}>
-          <Form />
+          <Form close={close} />
         </Modal>
       </Container>
     </>

@@ -1,5 +1,9 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+
+import { useDispatch } from 'react-redux';
+import { addMovie } from '../../../store/features/movies';
 
 import GridLayout from '../GridLayout/GridLayout';
 import Label from '../Label/Label';
@@ -11,14 +15,19 @@ import Button from '../Button/Button';
 
 import s from './Form.module.scss';
 
-const Form = () => {
+const Form = ({ close }) => {
   const [cover, setCover] = useState(null);
   const methods = useForm();
+  const dispatch = useDispatch();
 
   const onSubmit = methods.handleSubmit((data) => {
-    console.log({ ...data, cover });
-  });
+    const newMovie = { ...data, cover, id: Date.now() };
 
+    
+
+    dispatch(addMovie(newMovie));
+    close();
+  });
 
   return (
     <FormProvider {...methods}>
@@ -64,3 +73,7 @@ const Form = () => {
 };
 
 export default Form;
+
+Form.propTypes = {
+  close: PropTypes.func,
+};

@@ -1,0 +1,22 @@
+{
+  "movies": [
+    {
+      "id": "1",
+      "name": "The Dark Knight",
+      "genre": "action",
+      "year": 2008,
+      "cover": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+      "duration": 120,
+      "review": "Review"
+    },
+    {
+      "id": "2",
+      "name": "The Dark Knight Rises",
+      "genre": "action",
+      "year": 2012,
+      "cover": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+      "duration": 140,
+      "review": "New review"
+    }
+  ]
+}
