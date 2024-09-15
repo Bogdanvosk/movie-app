@@ -8,7 +8,7 @@ const Preview = ({ cover }) => {
   return (
     <div className={s.wrapper}>
       {screenWidth > 640 ? (
-        <img className={s.thumb} src={cover.preview} />
+        <img className={s.thumb} src={cover} />
       ) : (
         <span className={s.name}>{cover.path}</span>
       )}
