@@ -21,9 +21,6 @@ const Modal = ({ isShowing, closeModal, children }) => {
     <div className={s.wrapper}>
       <div className={s.modal} ref={modalRef}>
         {children}
-        {/* <div className='body'>
-          Click on the close button to close the modal.
-        </div>*/}
         <span className={s.delete} onClick={closeModal}></span>
       </div>
     </div>,

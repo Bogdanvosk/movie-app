@@ -5,6 +5,10 @@
   background-color: $color-white;
   border: 2px solid transparent;
   border-radius: 0.625rem;
+
+  @media (max-width: 460px) {
+    flex-direction: column;
+  }
 }
 
 .cover {
@@ -12,6 +16,10 @@
   height: 235px;
   object-fit: cover;
   border-radius: 10px;
+
+  @include mobile {
+    height: 200px;
+  }
 }
 
 .content {
@@ -21,6 +29,10 @@
   font-size: 1.5rem;
   line-height: 1.14;
   color: $color-black;
+
+  @include mobile {
+    font-size: 1rem;
+  }
 }
 
 .review {
