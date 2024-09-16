@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
 import { addMovie } from '../../../store/features/movies';
+import useFormPersist from 'react-hook-form-persist';
 
 import GridLayout from '../GridLayout/GridLayout';
 import Label from '../Label/Label';
@@ -22,11 +23,15 @@ const Form = ({ close }) => {
 
   const onSubmit = methods.handleSubmit((data) => {
     const newMovie = { ...data, cover, id: Date.now() };
-
-    
-
     dispatch(addMovie(newMovie));
+    
+    window.localStorage.clear();
     close();
+  });
+
+  useFormPersist('form', {
+    ...methods,
+    storage: window.localStorage,
   });
 
   return (

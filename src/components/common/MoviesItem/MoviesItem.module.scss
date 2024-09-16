@@ -1,0 +1,60 @@
+.movie {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background-color: $color-white;
+  border: 2px solid transparent;
+  border-radius: 0.625rem;
+
+  @media (max-width: 460px) {
+    flex-direction: column;
+  }
+}
+
+.cover {
+  width: 200px;
+  height: 235px;
+  object-fit: cover;
+  border-radius: 10px;
+
+  @include mobile {
+    height: 200px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.14;
+  color: $color-black;
+
+  @include mobile {
+    font-size: 1rem;
+  }
+}
+
+.review {
+  position: relative;
+  height: 70px;
+  font-size: 1rem;
+  overflow: hidden;
+
+  &::after {
+    position: absolute;
+    height: 1.4rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: right;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0),
+      $color-white 100%
+    );
+    transition: background 0.3s ease;
+    pointer-events: none;
+    content: '';
+  }
+}

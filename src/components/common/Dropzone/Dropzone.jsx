@@ -11,12 +11,15 @@ const Dropzone = ({ onSetCover, className = '' }) => {
   const screenWidth = useScreenWidth();
 
   const onDrop = useCallback((acceptedFiles) => {
-    const cover = {
-      ...acceptedFiles[0],
-      preview: URL.createObjectURL(acceptedFiles[0]),
+    const file = acceptedFiles[0];
+
+    let reader = new FileReader();
+
+    reader.onloadend = function () {
+      onSetCover(reader.result);
     };
 
-    onSetCover(cover);
+    reader.readAsDataURL(file);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -32,7 +35,8 @@ const Dropzone = ({ onSetCover, className = '' }) => {
       <input {...getInputProps()} />
       <div className={cn(s.dropzone, { [s.active]: isDragActive })}>
         <span className={s.text}>
-          Нажмите{screenWidth > 1024 && ' или перетащите файл'}, чтобы выбрать обложку фильма
+          Нажмите{screenWidth > 1024 && ' или перетащите файл'}, чтобы выбрать
+          обложку фильма
         </span>
       </div>
     </div>
