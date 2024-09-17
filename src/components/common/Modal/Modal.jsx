@@ -10,7 +10,9 @@ const Modal = ({ isShowing, closeModal, children }) => {
   const modalRef = useRef(null);
 
   useOutsideClick(modalRef, (e) => {
-    e.target.type !== 'button' && closeModal();
+    const target = e.target.closest('button') || e.target;
+
+    target.type !== 'button' && closeModal();
   });
 
   if (!isShowing) {

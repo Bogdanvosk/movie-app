@@ -12,7 +12,7 @@ import Modal from '../../common/Modal/Modal';
 import MoviesItems from '../../common/MoviesItems/MoviesItems';
 
 const HomePage = () => {
-  const [isShowingModal, open, close] = useModal();
+  const [isShowingModal, toggle] = useModal();
   const dispatch = useDispatch();
   const allMovies = useSelector(selectAllMovies);
 
@@ -24,9 +24,9 @@ const HomePage = () => {
     <>
       <Typography tag='h1'>Movie app</Typography>
       <Container>
-        <Button onClick={open}>Добавить фильм</Button>
-        <Modal closeModal={close} isShowing={isShowingModal}>
-          <Form close={close} />
+        <Button onClick={toggle}>Добавить фильм</Button>
+        <Modal closeModal={toggle} isShowing={isShowingModal}>
+          <Form close={toggle} />
         </Modal>
         <MoviesItems items={allMovies} />
       </Container>

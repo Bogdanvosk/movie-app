@@ -1,0 +1,45 @@
+.details {
+  padding: 2rem;
+  background-color: $color-white;
+  border-radius: 20px;
+
+  @include tablet {
+    padding: 1.75rem;
+  }
+}
+
+.cover {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+
+  @include mobile {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.main {
+  display: flex;
+  gap: 1rem;
+  color: $color-black;
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.14;
+}
+
+.review {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.13;
+}
