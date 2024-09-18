@@ -7,6 +7,7 @@ import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import Form from '../Form/Form';
+import MovieCover from '../MovieCover/MovieCover';
 
 import s from './MoviesItem.module.scss';
 
@@ -16,7 +17,7 @@ const MoviesItem = ({ item }) => {
 
   return (
     <div className={s.movie}>
-      <img className={s.cover} src={item.cover.src} alt='Cover of movie' />
+      <MovieCover cover={item.cover} />
       <div className={s.content}>
         <div className={s.buttons}>
           <Button onClick={toggleEdit} iconName='edit' type='button' />

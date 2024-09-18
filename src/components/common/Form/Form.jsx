@@ -41,7 +41,7 @@ const Form = ({ close, item = null }) => {
 
   const onDeleteMovie = () => {
     console.log(item.id);
-    
+
     dispatch(deleteMovie(item.id));
     // close();
   };
