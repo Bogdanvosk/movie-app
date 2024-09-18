@@ -19,9 +19,25 @@ export const moviesSlice = createSlice({
       state.isLoading = false;
       state.movies = action.payload;
     },
+
+    updateMovie: (state, action) => {
+      state.movies = state.movies.map((movie) => {
+        if (movie.id === action.payload.id) {
+          return action.payload;
+        }
+        return movie;
+      });
+    },
+
+    deleteMovie: (state, action) => {
+      state.movies = state.movies.filter(
+        (movie) => movie.id !== action.payload
+      );
+    },
   },
 });
 
 export default moviesSlice.reducer;
 
-export const { addMovie, fetchMovies, setMovies } = moviesSlice.actions;
+export const { addMovie, fetchMovies, setMovies, updateMovie, deleteMovie } =
+  moviesSlice.actions;

@@ -16,7 +16,7 @@ const Dropzone = ({ onSetCover, className = '' }) => {
     let reader = new FileReader();
 
     reader.onloadend = function () {
-      onSetCover(reader.result);
+      onSetCover({ name: file.path, src: reader.result });
     };
 
     reader.readAsDataURL(file);

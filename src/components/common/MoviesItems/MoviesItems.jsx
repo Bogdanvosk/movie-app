@@ -24,7 +24,10 @@ MoviesItems.propTypes = {
       year: PropTypes.string,
       duration: PropTypes.string,
       review: PropTypes.string,
-      cover: PropTypes.string,
+      cover: PropTypes.shape({
+        src: PropTypes.string,
+        name: PropTypes.string,
+      }),
     })
   ),
 };

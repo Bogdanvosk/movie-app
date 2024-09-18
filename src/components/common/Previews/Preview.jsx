@@ -8,9 +8,9 @@ const Preview = ({ cover }) => {
   return (
     <div className={s.wrapper}>
       {screenWidth > 640 ? (
-        <img className={s.thumb} src={cover} />
+        <img className={s.thumb} src={cover.src} />
       ) : (
-        <span className={s.name}>{cover.path}</span>
+        <span className={s.name}>{cover.name}</span>
       )}
     </div>
   );

@@ -6,21 +6,27 @@ import Typography from '../Typography/Typography';
 import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import ItemDetails from '../ItemDetails/ItemDetails';
+import Form from '../Form/Form';
 
 import s from './MoviesItem.module.scss';
 
 const MoviesItem = ({ item }) => {
-  const [isShowingModal, toggle] = useModal();
+  const [isShowingDetails, toggleDetails] = useModal();
+  const [isShowingEdit, toggleEdit] = useModal();
 
   return (
     <div className={s.movie}>
-      <img className={s.cover} src={item.cover} alt='Cover of movie' />
+      <img className={s.cover} src={item.cover.src} alt='Cover of movie' />
       <div className={s.content}>
         <div className={s.buttons}>
-          <Button onClick={toggle} iconName='show' type='button' />
+          <Button onClick={toggleEdit} iconName='edit' type='button' />
+          <Button onClick={toggleDetails} iconName='show' type='button' />
         </div>
-        <Modal closeModal={toggle} isShowing={isShowingModal}>
+        <Modal closeModal={toggleDetails} isShowing={isShowingDetails}>
           <ItemDetails item={item} />
+        </Modal>
+        <Modal closeModal={toggleEdit} isShowing={isShowingEdit} isEdit>
+          <Form item={item} close={toggleEdit} />
         </Modal>
         <Typography tag='h3'>{item.name}</Typography>
         <Typography tag='h4'>Жанр: {item.genre}</Typography>
@@ -41,6 +47,9 @@ MoviesItem.propTypes = {
     year: PropTypes.string,
     duration: PropTypes.string,
     review: PropTypes.string,
-    cover: PropTypes.string,
+    cover: PropTypes.shape({
+      src: PropTypes.string,
+      name: PropTypes.string,
+    }),
   }),
 };

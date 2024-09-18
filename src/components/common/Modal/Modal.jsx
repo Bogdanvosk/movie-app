@@ -1,19 +1,25 @@
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 
 import s from './Modal.module.scss';
 
-const Modal = ({ isShowing, closeModal, children }) => {
+const Modal = ({ isShowing, closeModal, children, isEdit = false }) => {
   const modalRef = useRef(null);
 
-  useOutsideClick(modalRef, (e) => {
-    const target = e.target.closest('button') || e.target;
+  useEffect(() => {
+    document.body.style.overflow = isShowing ? 'hidden' : 'auto';
+  }, [isShowing]);
 
+  const onCloseModal = (e) => {
+    const target = e.target.closest('button') || e.target;
     target.type !== 'button' && closeModal();
-  });
+    isEdit && window.localStorage.clear();
+  };
+
+  useOutsideClick(modalRef, onCloseModal);
 
   if (!isShowing) {
     return null;
@@ -23,7 +29,7 @@ const Modal = ({ isShowing, closeModal, children }) => {
     <div className={s.wrapper}>
       <div className={s.modal} ref={modalRef}>
         {children}
-        <span className={s.delete} onClick={closeModal}></span>
+        <span className={s.delete} onClick={onCloseModal}></span>
       </div>
     </div>,
     document.body

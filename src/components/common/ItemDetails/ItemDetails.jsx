@@ -8,7 +8,7 @@ const ItemDetails = ({ item }) => {
   return (
     <div className={s.details}>
       <div className={s.main}>
-        <img className={s.cover} src={item.cover} alt='Cover' />
+        <img className={s.cover} src={item.cover.src} alt='Cover' />
         <div className={s.content}>
           <Typography tag='h3'>{item.name}</Typography>
           <Typography tag='h4'>Жанр: {item.genre}</Typography>
@@ -32,6 +32,9 @@ ItemDetails.propTypes = {
     year: PropTypes.string,
     duration: PropTypes.string,
     review: PropTypes.string,
-    cover: PropTypes.string,
+    cover: PropTypes.shape({
+      src: PropTypes.string,
+      name: PropTypes.string,
+    }),
   }),
 };

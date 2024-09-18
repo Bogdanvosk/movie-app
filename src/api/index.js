@@ -15,3 +15,17 @@ export const addMovieReq = async (movie) => {
     .catch((err) => console.log(err));
   return data;
 };
+
+export const updateMovieReq = async (movie) => {
+  const { data } = await instance
+    .put(`${MOVIES_ROUTE}/${movie.id}`, movie)
+    .catch((err) => console.log(err));
+  return data;
+};
+
+export const deleteMovieReq = async (id) => {
+  await instance
+    .delete(`${MOVIES_ROUTE}/${id}`)
+    .catch((err) => console.log(err));
+  return id;
+};

@@ -1,9 +1,14 @@
 import { FormProvider, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import { useDispatch } from 'react-redux';
-import { addMovie } from '../../../store/features/movies';
+import {
+  addMovie,
+  deleteMovie,
+  updateMovie,
+} from '../../../store/features/movies';
 import useFormPersist from 'react-hook-form-persist';
 
 import GridLayout from '../GridLayout/GridLayout';
@@ -16,23 +21,47 @@ import Button from '../Button/Button';
 
 import s from './Form.module.scss';
 
-const Form = ({ close }) => {
+const Form = ({ close, item = null }) => {
   const [cover, setCover] = useState(null);
   const methods = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = methods.handleSubmit((data) => {
-    const newMovie = { ...data, cover, id: Date.now() };
-    dispatch(addMovie(newMovie));
-    
+    if (item === null) {
+      const newMovie = { ...data, cover, id: Date.now() };
+      dispatch(addMovie(newMovie));
+    } else {
+      const updatedMovie = { ...data, cover, id: item.id };
+      dispatch(updateMovie(updatedMovie));
+    }
+
     window.localStorage.clear();
     close();
   });
+
+  const onDeleteMovie = () => {
+    console.log(item.id);
+    
+    dispatch(deleteMovie(item.id));
+    // close();
+  };
 
   useFormPersist('form', {
     ...methods,
     storage: window.localStorage,
   });
+
+  useEffect(() => {
+    if (item !== null) {
+      Object.keys(item)
+        .filter((key) => key !== 'id' && key !== 'cover')
+        .forEach((key) => {
+          methods.setValue(key, item[key]);
+        });
+
+      setCover(item.cover);
+    }
+  }, [item]);
 
   return (
     <FormProvider {...methods}>
@@ -68,9 +97,20 @@ const Form = ({ close }) => {
           </Label>
           <Dropzone onSetCover={setCover} className={s.dropzone} />
           <div className={s.preview}>{cover && <Preview cover={cover} />}</div>
-          <Button type='submit' className={s.button}>
-            Создать
-          </Button>
+          <div className={s.buttons}>
+            <Button type='submit' className={s.button}>
+              {item ? 'Сохранить' : 'Добавить'}
+            </Button>
+            {item && (
+              <Button
+                type='button'
+                className={cn(s.button, s.delete)}
+                onClick={onDeleteMovie}
+              >
+                Удалить
+              </Button>
+            )}
+          </div>
         </GridLayout>
       </form>
     </FormProvider>
@@ -81,4 +121,15 @@ export default Form;
 
 Form.propTypes = {
   close: PropTypes.func,
+  item: PropTypes.shape({
+    name: PropTypes.string,
+    genre: PropTypes.string,
+    year: PropTypes.string,
+    duration: PropTypes.string,
+    review: PropTypes.string,
+    cover: PropTypes.shape({
+      src: PropTypes.string,
+      name: PropTypes.string,
+    }),
+  }),
 };
