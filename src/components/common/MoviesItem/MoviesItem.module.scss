@@ -1,7 +1,6 @@
 .movie {
   position: relative;
   display: flex;
-  justify-content: space-between;
   gap: 1rem;
   padding: 1.25rem;
   background-color: $color-white;
@@ -16,8 +15,8 @@
 .cover {
   width: 200px;
   height: 240px;
-  object-fit: cover;
   border-radius: 10px;
+  object-fit: cover;
 
   @include mobile {
     height: 200px;
@@ -39,9 +38,13 @@
 
 .review {
   position: relative;
-  height: 145px;
+  height: 195px;
   font-size: 1rem;
   overflow: hidden;
+
+  @include mobile {
+    height: 145px;
+  }
 
   &::after {
     position: absolute;
@@ -72,9 +75,15 @@
   top: 10px;
   right: 10px;
   display: flex;
-  gap: .5rem;
+  gap: 0.5rem;
 
   @media (max-width: $xs) {
     flex-direction: column;
   }
+}
+
+.detailsModal {
+  width: 85%;
+  height: 90vh;
+  overflow-y: auto;
 }

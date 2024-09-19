@@ -1,10 +1,17 @@
 .form {
+  height: 95vh;
   padding: 2rem;
   background-color: $color-white;
   border-radius: 20px;
+  overflow-y: auto;
 
   @include tablet {
+    height: 75vh;
     padding: 1.75rem;
+  }
+
+  @include mobile {
+    height: 80vh;
   }
 }
 

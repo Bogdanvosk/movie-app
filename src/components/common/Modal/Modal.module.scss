@@ -11,14 +11,7 @@
 .modal {
   position: fixed;
   z-index: 10;
-  width: 90%;
-  height: 95%;
   padding: 0 1rem;
-  overflow-y: auto;
-
-  @include mobile {
-    width: 100%;
-  }
 }
 
 .delete {

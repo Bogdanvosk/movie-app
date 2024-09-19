@@ -1,7 +1,7 @@
 import useModal from '../../../hooks/useModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchMovies } from '../../../store/features/movies';
+import { fetchMoviesAction } from '../../../store/features/movies';
 import { selectAllMovies } from '../../../store/features/movies/selectors';
 
 import Typography from '../../common/Typography/Typography';
@@ -17,7 +17,7 @@ const HomePage = () => {
   const allMovies = useSelector(selectAllMovies);
 
   useEffect(() => {
-    dispatch(fetchMovies());
+    dispatch(fetchMoviesAction());
   }, []);
 
   return (

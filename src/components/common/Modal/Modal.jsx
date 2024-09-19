@@ -1,12 +1,19 @@
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
+import cn from 'classnames';
 
 import { useEffect, useRef } from 'react';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 
 import s from './Modal.module.scss';
 
-const Modal = ({ isShowing, closeModal, children, isEdit = false }) => {
+const Modal = ({
+  isShowing,
+  closeModal,
+  children,
+  className = '',
+  isEdit = false,
+}) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -27,7 +34,7 @@ const Modal = ({ isShowing, closeModal, children, isEdit = false }) => {
 
   return createPortal(
     <div className={s.wrapper}>
-      <div className={s.modal} ref={modalRef}>
+      <div className={cn(s.modal, className)} ref={modalRef}>
         {children}
         <span className={s.delete} onClick={onCloseModal}></span>
       </div>

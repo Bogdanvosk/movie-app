@@ -9,17 +9,25 @@ export const moviesSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {
-    addMovie: (state, action) => {
-      state.movies = [...state.movies, action.payload];
-    },
-    fetchMovies: (state) => {
+    fetchMoviesAction: (state) => {
       state.isLoading = true;
     },
-    setMovies: (state, action) => {
+    fetchMovies: (state, action) => {
       state.isLoading = false;
       state.movies = action.payload;
     },
 
+    addMovieAction: (state) => {
+      state.isLoading = true;
+    },
+    addMovie: (state, action) => {
+      state.isLoading = false;
+      state.movies = [...state.movies, action.payload];
+    },
+
+    updateMovieAction: (state) => {
+      state.isLoading = true;
+    },
     updateMovie: (state, action) => {
       state.movies = state.movies.map((movie) => {
         if (movie.id === action.payload.id) {
@@ -29,6 +37,9 @@ export const moviesSlice = createSlice({
       });
     },
 
+    deleteMovieAction: (state) => {
+      state.isLoading = true;
+    },
     deleteMovie: (state, action) => {
       state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload
@@ -39,5 +50,13 @@ export const moviesSlice = createSlice({
 
 export default moviesSlice.reducer;
 
-export const { addMovie, fetchMovies, setMovies, updateMovie, deleteMovie } =
-  moviesSlice.actions;
+export const {
+  fetchMoviesAction,
+  fetchMovies,
+  addMovieAction,
+  addMovie,
+  updateMovieAction,
+  updateMovie,
+  deleteMovieAction,
+  deleteMovie,
+} = moviesSlice.actions;
