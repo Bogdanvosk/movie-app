@@ -12,6 +12,11 @@
     width: 200px;
     height: 200px;
   }
+
+  @media (max-width: $xs) {
+    width: 140px;
+    height: 140px;
+  }
 }
 
 .iconWrapper {

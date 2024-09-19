@@ -5,9 +5,9 @@ import cn from 'classnames';
 
 import { useDispatch } from 'react-redux';
 import {
-  addMovie,
-  deleteMovie,
-  updateMovie,
+  addMovieAction,
+  deleteMovieAction,
+  updateMovieAction,
 } from '../../../store/features/movies';
 import useFormPersist from 'react-hook-form-persist';
 
@@ -28,11 +28,11 @@ const Form = ({ close, item = null }) => {
 
   const onSubmit = methods.handleSubmit((data) => {
     if (item === null) {
-      const newMovie = { ...data, cover, id: Date.now() };
-      dispatch(addMovie(newMovie));
+      const newMovie = { ...data, cover, id: Date.now().toString() };
+      dispatch(addMovieAction(newMovie));
     } else {
       const updatedMovie = { ...data, cover, id: item.id };
-      dispatch(updateMovie(updatedMovie));
+      dispatch(updateMovieAction(updatedMovie));
     }
 
     window.localStorage.clear();
@@ -40,10 +40,9 @@ const Form = ({ close, item = null }) => {
   });
 
   const onDeleteMovie = () => {
-    console.log(item.id);
-
-    dispatch(deleteMovie(item.id));
-    // close();
+    dispatch(deleteMovieAction(item.id));
+    window.localStorage.clear();
+    close();
   };
 
   useFormPersist('form', {

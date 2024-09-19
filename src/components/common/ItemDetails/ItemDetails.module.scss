@@ -6,6 +6,10 @@
   @include tablet {
     padding: 1.75rem;
   }
+
+  @include mobile {
+    padding: 1rem;
+  }
 }
 
 .main {
@@ -24,6 +28,10 @@
   gap: 0.5rem;
   font-size: 1.5rem;
   line-height: 1.14;
+
+  @include mobile {
+    font-size: 1rem;
+  }
 }
 
 .review {

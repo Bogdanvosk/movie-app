@@ -38,9 +38,13 @@
 
 .review {
   position: relative;
-  height: 145px;
+  height: 195px;
   font-size: 1rem;
   overflow: hidden;
+
+  @include mobile {
+    height: 145px;
+  }
 
   &::after {
     position: absolute;
@@ -76,4 +80,10 @@
   @media (max-width: $xs) {
     flex-direction: column;
   }
+}
+
+.detailsModal {
+  width: 85%;
+  height: 90vh;
+  overflow-y: auto;
 }

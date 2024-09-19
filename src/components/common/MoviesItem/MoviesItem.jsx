@@ -23,7 +23,7 @@ const MoviesItem = ({ item }) => {
           <Button onClick={toggleEdit} iconName='edit' type='button' />
           <Button onClick={toggleDetails} iconName='show' type='button' />
         </div>
-        <Modal closeModal={toggleDetails} isShowing={isShowingDetails}>
+        <Modal className={s.detailsModal} closeModal={toggleDetails} isShowing={isShowingDetails}>
           <ItemDetails item={item} />
         </Modal>
         <Modal closeModal={toggleEdit} isShowing={isShowingEdit} isEdit>
