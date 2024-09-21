@@ -70,29 +70,28 @@ const Form = ({ close, item = null }) => {
             <Input
               placeholder='Введите название'
               type='text'
-              name='name'
-              isRequired
+              fieldName='name'
             />
           </Label>
           <Label title='Жанр'>
-            <Input placeholder='Введите жанр' type='text' name='genre' />
+            <Input placeholder='Введите жанр' type='text' fieldName='genre' />
           </Label>
           <Label title='Год выпуска'>
             <Input
               placeholder='Введите год выпуска'
               type='number'
-              name='year'
+              fieldName='year'
             />
           </Label>
           <Label title='Длительность'>
             <Input
               placeholder='Длительность в минутах'
               type='number'
-              name='duration'
+              fieldName='duration'
             />
           </Label>
           <Label title='Рецензия' className={s.review}>
-            <Textarea name='review' />
+            <Textarea fieldName='review' />
           </Label>
           <Dropzone onSetCover={setCover} className={s.dropzone} />
           <div className={s.preview}>{cover && <Preview cover={cover} />}</div>

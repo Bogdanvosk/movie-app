@@ -7,7 +7,7 @@ import useScreenWidth from '../../../hooks/useScreenWidth';
 
 import s from './Dropzone.module.scss';
 
-const Dropzone = ({ onSetCover, className = '' }) => {
+const Dropzone = ({ onSetCover, isRequired = false, className = '' }) => {
   const screenWidth = useScreenWidth();
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -48,4 +48,5 @@ export default Dropzone;
 Dropzone.propTypes = {
   onSetCover: PropTypes.func,
   className: PropTypes.string,
+  isRequired: PropTypes.bool,
 };

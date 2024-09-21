@@ -23,14 +23,18 @@ const MoviesItem = ({ item }) => {
           <Button onClick={toggleEdit} iconName='edit' type='button' />
           <Button onClick={toggleDetails} iconName='show' type='button' />
         </div>
-        <Modal className={s.detailsModal} closeModal={toggleDetails} isShowing={isShowingDetails}>
+        <Modal
+          className={s.detailsModal}
+          closeModal={toggleDetails}
+          isShowing={isShowingDetails}
+        >
           <ItemDetails item={item} />
         </Modal>
         <Modal closeModal={toggleEdit} isShowing={isShowingEdit} isEdit>
           <Form item={item} close={toggleEdit} />
         </Modal>
         <Typography tag='h3'>{item.name}</Typography>
-        <Typography tag='h4'>Жанр: {item.genre}</Typography>
+        <Typography tag='h4'>{item.genre && `Жанр: ${item.genre}`}</Typography>
         <Typography className={s.review} tag='p'>
           {item.review}
         </Typography>

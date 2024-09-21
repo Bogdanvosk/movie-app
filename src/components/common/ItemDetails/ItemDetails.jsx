@@ -12,9 +12,13 @@ const ItemDetails = ({ item }) => {
         <MovieCover cover={item.cover} />
         <div className={s.content}>
           <Typography tag='h3'>{item.name}</Typography>
-          <Typography tag='h4'>Жанр: {item.genre}</Typography>
-          <Typography tag='p'>Год выпуска: {item.year}</Typography>
-          <Typography tag='p'>Длительность: {item.duration} минут</Typography>
+          <Typography tag='h4'>{item.genre && `Жанр: ${item.genre}`}</Typography>
+          <Typography tag='p'>
+            {item.year && `Год выпуска: ${item.year}`}
+          </Typography>
+          <Typography tag='p'>
+            {item.duration && `Длительность: ${item.duration} минут`}
+          </Typography>
         </div>
       </div>
       <Typography tag='p' className={s.review}>

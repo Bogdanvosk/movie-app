@@ -9,14 +9,14 @@
 }
 
 .thumb {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 370px;
   object-fit: cover;
 }
 
 .name {
   font-size: 1rem;
-	text-align: center;
+  text-align: center;
   color: $color-black;
 
   @media (max-width: 370px) {
