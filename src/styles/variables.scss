@@ -6,13 +6,27 @@ $lg: 1024px;
 $color-black: #1b1f2b;
 $color-white: #ffffff;
 
-$color-gray-300: #a6a6a6;
-$color-gray-200: #d9dfdb;
-$color-gray-100: #f1f3f2;
+$color-black-2: #abafb1;
+$color-black-4: #5e6366;
+
+$color-primary-100: #5570f1;
+$color-primary-200: #5b6ec6;
+
+$color-red-100: #f56159;
+$color-red-200: #c95f58;
+
+$color-green-100: #32936f;
+$color-green-200: #458b71;
+
+$color-gray-100: #9ca3af;
+$color-gray-200: #111827;
 
 $color-beige-200: #f4f0e9;
 $color-beige-100: #f9f7f4;
 
-$color-red: #ff3d3d;
+$input-default-bg: rgba(239, 241, 249, 0.6);
+$input-focus-bg: rgba(233, 236, 248, 0.9);
+$input-error-bg: rgba(252, 243, 242, 0.7);
+$input-success-bg: rgba(240, 249, 246, 0.7);
 
-$primary-font: 'Roboto', 'Arial', sans-serif;
+$primary-font: 'Open Sans', 'Arial', sans-serif;

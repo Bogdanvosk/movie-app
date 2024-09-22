@@ -4,14 +4,14 @@
   align-items: center;
   width: 100%;
   height: 200px;
-  background-color: $color-beige-100;
+  background-color: $input-default-bg;
   border: 2px dashed transparent;
   border-radius: 10px;
   transition: background-color 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
 
   @include hover {
-    background-color: $color-beige-200;
+    background-color: $input-focus-bg;
   }
 
   @include tablet {
@@ -24,6 +24,7 @@
   font-size: 1.13rem;
   line-height: 1.91rem;
   text-align: center;
+  color: $color-black-4;
 
   @include mobile {
     font-size: 1rem;
@@ -33,6 +34,10 @@
 
 .dropzone:active,
 .active {
-  background-color: darken($color-beige-200, 10%);
-  border-color: $color-black;
+  background-color: darken($input-focus-bg, 10%);
+  border-color: $color-primary-100;
+}
+
+.error {
+  background-color: $input-error-bg;
 }

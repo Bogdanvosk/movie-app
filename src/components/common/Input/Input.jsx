@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 
 import { useFormContext } from 'react-hook-form';
 
+import Icon from '../Icon/Icon';
+
 import s from './Input.module.scss';
 
 const Input = ({ fieldName, type, placeholder, className = '' }) => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useFormContext();
 
   const registerOptions = {
@@ -28,7 +30,7 @@ const Input = ({ fieldName, type, placeholder, className = '' }) => {
     duration: {
       required: 'Длительность обязательна',
       min: {
-        value: 0,
+        value: 1,
         message: 'Некорректная длительность',
       },
       max: {
@@ -40,12 +42,26 @@ const Input = ({ fieldName, type, placeholder, className = '' }) => {
 
   return (
     <>
-      <input
-        {...register(fieldName, registerOptions[fieldName])}
-        type={type}
-        placeholder={placeholder}
-        className={cn(s.input, { [s.incorrect]: errors[fieldName] }, className)}
-      />
+      <div className={s.inputWrapper}>
+        <input
+          {...register(fieldName, registerOptions[fieldName])}
+          type={type}
+          placeholder={placeholder}
+          className={cn(
+            s.input,
+            { [s.incorrect]: errors[fieldName] },
+            { [s.valid]: dirtyFields[fieldName] && !errors[fieldName] },
+            className
+          )}
+        />
+        <span
+          className={cn(s.success, {
+            [s.show]: dirtyFields[fieldName] && !errors[fieldName],
+          })}
+        >
+          <Icon name='success' className={s.successIcon} />
+        </span>
+      </div>
       <p className={cn(s.error, { [s.show]: errors[fieldName] })}>
         {errors[fieldName]
           ? errors[fieldName].message

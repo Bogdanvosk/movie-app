@@ -12,6 +12,7 @@
 .span {
   font-size: 1.25rem;
   line-height: 1.42;
+  color: $color-black-4;
 
   @include mobile {
     font-size: 1rem;
@@ -65,4 +66,12 @@
   & span.checked::after {
     opacity: 1;
   }
+}
+
+.error {
+  color: $color-red-100;
+}
+
+.valid {
+  color: $color-green-100;
 }

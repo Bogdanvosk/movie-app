@@ -22,7 +22,9 @@ const Modal = ({
 
   const onCloseModal = (e) => {
     const target = e.target.closest('button') || e.target;
+
     target.type !== 'button' && closeModal();
+
     isEdit && window.localStorage.clear();
   };
 

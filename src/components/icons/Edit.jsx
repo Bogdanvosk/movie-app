@@ -1,28 +1,45 @@
 import PropTypes from 'prop-types';
 
-const Edit = ({ className = '' }) => {
+const Edit = ({ className = '', onClick = () => {} }) => {
   return (
     <svg
-      width='800px'
-      height='800px'
+      width='24'
+      height='24'
       viewBox='0 0 24 24'
       fill='none'
+      onClick={onClick}
       className={className}
     >
-      <path
-        d='M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z'
-        stroke='currentColor'
-        strokeWidth='1.5'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-      <path
-        d='M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13'
-        stroke='currentColor'
-        strokeWidth='1.5'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
+      <g id='Iconly/Light/Edit Square'>
+        <g id='Edit Square'>
+          <path
+            id='Stroke 1'
+            d='M11.492 2.789H7.753C4.678 2.789 2.75 4.966 2.75 8.048V16.362C2.75 19.444 4.669 21.621 7.753 21.621H16.577C19.662 21.621 21.581 19.444 21.581 16.362V12.334'
+            stroke='currentColor'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+          <path
+            id='Stroke 3'
+            fillRule='evenodd'
+            clipRule='evenodd'
+            d='M8.82666 10.9209L16.2997 3.4479C17.2307 2.5179 18.7397 2.5179 19.6707 3.4479L20.8877 4.6649C21.8187 5.5959 21.8187 7.1059 20.8877 8.0359L13.3787 15.5449C12.9717 15.9519 12.4197 16.1809 11.8437 16.1809H8.09766L8.19166 12.4009C8.20566 11.8449 8.43266 11.3149 8.82666 10.9209Z'
+            stroke='currentColor'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+          <path
+            id='Stroke 5'
+            d='M15.1641 4.60249L19.7301 9.16849'
+            stroke='currentColor'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+        </g>
+      </g>
     </svg>
   );
 };
@@ -30,5 +47,5 @@ const Edit = ({ className = '' }) => {
 export default Edit;
 
 Edit.propTypes = {
-	className: PropTypes.string,
+  className: PropTypes.string,
 };

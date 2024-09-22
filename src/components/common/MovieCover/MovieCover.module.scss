@@ -1,43 +1,13 @@
 .cover {
-  width: 300px;
-  height: 300px;
-}
-
-.cover {
+  width: 100%;
+  height: 370px;
   border-radius: 10px;
   object-fit: cover;
-
-  @include mobile {
-    width: 200px;
-    height: 200px;
-  }
-
-  @media (max-width: $xs) {
-    width: 140px;
-    height: 140px;
-  }
 }
 
-.iconWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $color-beige-100;
+.default {
+  width: 250px;
+  height: 370px;
+  background-color: $color-black-2;
   border-radius: 10px;
-
-  @include mobile {
-    width: 200px;
-    height: 200px;
-  }
-}
-
-.movieIcon {
-  width: 200px;
-  height: 200px;
-  fill: rgba(0, 0, 0, 0.2);
-
-  @include mobile {
-    width: 100px;
-    height: 100px;
-  }
 }
