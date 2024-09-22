@@ -1,15 +1,10 @@
 .movie {
   position: relative;
+  max-width: 250px;
   display: flex;
-  gap: 1rem;
-  padding: 1.25rem;
-  background-color: $color-white;
-  border: 2px solid transparent;
+  flex-direction: column;
+  gap: 0.75rem;
   border-radius: 0.625rem;
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
 }
 
 .cover {
@@ -17,10 +12,6 @@
   height: 240px;
   border-radius: 10px;
   object-fit: cover;
-
-  @include mobile {
-    height: 200px;
-  }
 }
 
 .content {
@@ -29,61 +20,63 @@
   gap: 0.5rem;
   font-size: 1.5rem;
   line-height: 1.14;
-  color: $color-black;
 
   @include mobile {
     font-size: 1rem;
   }
 }
 
-.review {
-  position: relative;
-  height: 195px;
-  font-size: 1rem;
-  overflow: hidden;
-
-  @include mobile {
-    height: 145px;
-  }
-
-  &::after {
-    position: absolute;
-    height: 1.4rem;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    text-align: right;
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0),
-      $color-white 100%
-    );
-    transition: background 0.3s ease;
-    pointer-events: none;
-    content: '';
-  }
-}
-
-.title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .buttons {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   display: flex;
   gap: 0.5rem;
-
-  @media (max-width: $xs) {
-    flex-direction: column;
-  }
 }
 
 .detailsModal {
   width: 85%;
   height: 90vh;
   overflow-y: auto;
+}
+
+.firstRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.favourite {
+  position: absolute;
+  color: $color-white;
+  transition: fill 0.3s ease;
+  fill: transparent;
+
+  &Wrapper {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+    @include hover {
+      background-color: rgba($color-black-2, 0.3);
+    }
+
+    &:active {
+      background-color: rgba($color-black-2, 0.7);
+
+      svg {
+        fill: $color-red-100;
+      }
+    }
+  }
+
+  &.isFavourite {
+    fill: $color-red-100;
+  }
 }

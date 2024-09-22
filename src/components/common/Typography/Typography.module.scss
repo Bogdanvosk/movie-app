@@ -14,11 +14,17 @@
 }
 
 .h3 {
-  font-size: 3rem;
+  font-size: 1.125rem;
   line-height: 1.13;
   font-weight: 700;
+  color: $color-gray-200;
 
   @include mobile {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
+}
+
+.span {
+  font-size: 0.75rem;
+  color: $color-gray-100;
 }

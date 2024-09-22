@@ -10,25 +10,31 @@ import {
   updateMovieAction,
 } from '../../../store/features/movies';
 import useFormPersist from 'react-hook-form-persist';
+import useScreenWidth from '../../../hooks/useScreenWidth';
 
 import GridLayout from '../GridLayout/GridLayout';
 import Label from '../Label/Label';
 import Textarea from '../Textarea/Textarea';
 import Input from '../Input/Input';
 import Dropzone from '../Dropzone/Dropzone';
-import Preview from '../Previews/Preview';
 import Button from '../Button/Button';
 
 import s from './Form.module.scss';
 
 const Form = ({ close, item = null }) => {
   const [cover, setCover] = useState(null);
-  const methods = useForm();
+  const methods = useForm({ mode: 'onChange' });
   const dispatch = useDispatch();
+  const screenWidth = useScreenWidth();
 
   const onSubmit = methods.handleSubmit((data) => {
     if (item === null) {
-      const newMovie = { ...data, cover, id: Date.now().toString() };
+      const newMovie = {
+        ...data,
+        cover,
+        id: Date.now().toString(),
+        isFavourite: false,
+      };
       dispatch(addMovieAction(newMovie));
     } else {
       const updatedMovie = { ...data, cover, id: item.id };
@@ -62,49 +68,62 @@ const Form = ({ close, item = null }) => {
     }
   }, [item]);
 
+  console.log(cover);
+
   return (
     <FormProvider {...methods}>
       <form className={s.form} onSubmit={onSubmit}>
         <GridLayout>
-          <Label title='Название'>
+          <Label title='Название' fieldName='name'>
             <Input
               placeholder='Введите название'
               type='text'
-              name='name'
-              isRequired
+              fieldName='name'
             />
           </Label>
-          <Label title='Жанр'>
-            <Input placeholder='Введите жанр' type='text' name='genre' />
+          <Label title='Жанр' fieldName='genre'>
+            <Input placeholder='Введите жанр' type='text' fieldName='genre' />
           </Label>
-          <Label title='Год выпуска'>
+          <Label title='Год выпуска' fieldName='year'>
             <Input
               placeholder='Введите год выпуска'
               type='number'
-              name='year'
+              fieldName='year'
             />
           </Label>
-          <Label title='Длительность'>
+          <Label title='Длительность' fieldName='duration'>
             <Input
               placeholder='Длительность в минутах'
               type='number'
-              name='duration'
+              fieldName='duration'
             />
           </Label>
-          <Label title='Рецензия' className={s.review}>
-            <Textarea name='review' />
+          <Label title='Рецензия' className={s.review} fieldName='review'>
+            <Textarea fieldName='review' />
           </Label>
-          <Dropzone onSetCover={setCover} className={s.dropzone} />
-          <div className={s.preview}>{cover && <Preview cover={cover} />}</div>
+
+          <div className={s.dropzone}>
+            <Dropzone cover={cover} onSetCover={setCover} />
+            <span className={cn(s.cover, { [s.show]: cover })}>
+              {cover ? cover.name : 'Cover name'}
+            </span>
+          </div>
           <div className={s.buttons}>
-            <Button type='submit' className={s.button}>
+            <Button
+              variant={item ? 'save' : 'default'}
+              type='submit'
+              className={s.button}
+              iconName={item && screenWidth >= 1024 ? 'save' : ''}
+            >
               {item ? 'Сохранить' : 'Добавить'}
             </Button>
             {item && (
               <Button
+                variant='delete'
                 type='button'
                 className={cn(s.button, s.delete)}
                 onClick={onDeleteMovie}
+                iconName={screenWidth >= 1024 ? 'delete' : ''}
               >
                 Удалить
               </Button>

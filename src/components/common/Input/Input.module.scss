@@ -7,16 +7,36 @@
     -webkit-appearance: none;
   }
 
-  &.incorrect {
-    border-color: $color-red;
-    color: $color-red;
+  &Wrapper {
+    position: relative;
   }
 }
 
 .error {
-  color: $color-red;
+  color: $color-red-100;
   opacity: 0;
   transition: opacity 0.3s ease;
+}
+
+.success {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(50, 147, 111, 0.24);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: translateY(-50%);
+
+  &Icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: $color-green-100;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .show {

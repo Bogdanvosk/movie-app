@@ -1,4 +1,4 @@
-const Show = ({ className = '' }) => {
+const Save = ({ className = '' }) => {
   return (
     <svg
       width='24'
@@ -7,19 +7,13 @@ const Show = ({ className = '' }) => {
       fill='none'
       className={className}
     >
-      <g id='Iconly/Light/Document'>
-        <g id='Document'>
+      <g id='Iconly/Light/Paper Plus'>
+        <g id='Paper Plus'>
           <path
             id='Stroke 1'
-            d='M15.7161 16.2234H8.49609'
-            stroke='currentColor'
-            strokeWidth='1.5'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-          />
-          <path
-            id='Stroke 2'
-            d='M15.7161 12.0369H8.49609'
+            fillRule='evenodd'
+            clipRule='evenodd'
+            d='M14.7366 2.7619H8.08455C6.00455 2.7539 4.29955 4.4109 4.25055 6.4909V17.3399C4.21555 19.3899 5.84855 21.0809 7.89955 21.1169C7.96055 21.1169 8.02255 21.1169 8.08455 21.1149H16.0726C18.1416 21.0939 19.8056 19.4089 19.8026 17.3399V8.0399L14.7366 2.7619Z'
             stroke='currentColor'
             strokeWidth='1.5'
             strokeLinecap='round'
@@ -27,17 +21,23 @@ const Show = ({ className = '' }) => {
           />
           <path
             id='Stroke 3'
-            d='M11.2511 7.86011H8.49609'
+            d='M14.4746 2.7501V5.6591C14.4746 7.0791 15.6236 8.2301 17.0436 8.2341H19.7976'
             stroke='currentColor'
             strokeWidth='1.5'
             strokeLinecap='round'
             strokeLinejoin='round'
           />
           <path
-            id='Stroke 4'
-            fillRule='evenodd'
-            clipRule='evenodd'
-            d='M15.908 2.7498C15.908 2.7498 8.231 2.7538 8.219 2.7538C5.459 2.7708 3.75 4.5868 3.75 7.3568V16.5528C3.75 19.3368 5.472 21.1598 8.256 21.1598C8.256 21.1598 15.932 21.1568 15.945 21.1568C18.705 21.1398 20.415 19.3228 20.415 16.5528V7.3568C20.415 4.5728 18.692 2.7498 15.908 2.7498Z'
+            id='Stroke 5'
+            d='M14.2945 12.9142H9.39453'
+            stroke='currentColor'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+          <path
+            id='Stroke 7'
+            d='M11.8438 15.3639V10.4639'
             stroke='currentColor'
             strokeWidth='1.5'
             strokeLinecap='round'
@@ -49,4 +49,4 @@ const Show = ({ className = '' }) => {
   );
 };
 
-export default Show;
+export default Save;

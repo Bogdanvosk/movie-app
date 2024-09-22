@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 
 import { getIcon } from '../../../utils/getIcon';
 
-const Icon = ({ name, className = '', fill, ...props }) => {
+const Icon = ({ name, className = '', ...props }) => {
   const SVGIcon = getIcon(name);
-  return <SVGIcon className={className} fill={fill} {...props} />;
+  return <SVGIcon className={className} {...props} />;
 };
 
 export default Icon;

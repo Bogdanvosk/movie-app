@@ -3,46 +3,69 @@ import PropTypes from 'prop-types';
 
 import { useFormContext } from 'react-hook-form';
 
+import Icon from '../Icon/Icon';
+
 import s from './Input.module.scss';
 
-const Input = ({
-  name,
-  type,
-  placeholder,
-  isRequired = false,
-  className = '',
-}) => {
+const Input = ({ fieldName, type, placeholder, className = '' }) => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useFormContext();
 
-  const validate = () => {
-    if (name === 'year')
-      return { value: 4, message: 'Некорректный год выпуска' };
-
-    if (name === 'duration')
-      return { value: 3, message: 'Некорректная длительность' };
-
-    return {
-      value: null,
-      message: 'Обязательное поле',
-    };
+  const registerOptions = {
+    name: { required: 'Имя обязательно' },
+    genre: { required: 'Жанр обязателен' },
+    year: {
+      required: 'Год выпуска обязателен',
+      min: {
+        value: 1900,
+        message: 'Некорректный год выпуска',
+      },
+      max: {
+        value: new Date().getFullYear(),
+        message: 'Некорректный год выпуска',
+      },
+    },
+    duration: {
+      required: 'Длительность обязательна',
+      min: {
+        value: 1,
+        message: 'Некорректная длительность',
+      },
+      max: {
+        value: 9000,
+        message: 'Некорректная длительность',
+      },
+    },
   };
 
   return (
     <>
-      <input
-        {...register(name, {
-          required: { value: isRequired, message: 'Обязательное поле' },
-          maxLength: validate(),
-        })}
-        type={type}
-        placeholder={placeholder}
-        className={cn(s.input, { [s.incorrect]: errors[name] }, className)}
-      />
-      <p className={cn(s.error, { [s.show]: errors[name] })}>
-        {validate().message}
+      <div className={s.inputWrapper}>
+        <input
+          {...register(fieldName, registerOptions[fieldName])}
+          type={type}
+          placeholder={placeholder}
+          className={cn(
+            s.input,
+            { [s.incorrect]: errors[fieldName] },
+            { [s.valid]: dirtyFields[fieldName] && !errors[fieldName] },
+            className
+          )}
+        />
+        <span
+          className={cn(s.success, {
+            [s.show]: dirtyFields[fieldName] && !errors[fieldName],
+          })}
+        >
+          <Icon name='success' className={s.successIcon} />
+        </span>
+      </div>
+      <p className={cn(s.error, { [s.show]: errors[fieldName] })}>
+        {errors[fieldName]
+          ? errors[fieldName].message
+          : registerOptions[fieldName].required}
       </p>
     </>
   );
@@ -51,8 +74,7 @@ const Input = ({
 export default Input;
 
 Input.propTypes = {
-  name: PropTypes.string,
-  isRequired: PropTypes.bool,
+  fieldName: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,

@@ -31,14 +31,15 @@
 }
 
 @mixin input {
-  padding: 1.25rem;
+  width: 100%;
+  padding: 1rem;
   font-size: 1.25rem;
   line-height: 1.42;
   font-family: inherit;
-  color: $color-black;
-  background-color: $color-beige-100;
-  border: 1px solid $color-beige-200;
-  border-radius: 10px;
+  color: $color-black-4;
+  background-color: $input-default-bg;
+  border: none;
+  border-radius: 8px;
   outline: none;
 
   @include mobile {
@@ -47,18 +48,30 @@
   }
 
   @include hover {
-    background-color: $color-beige-200;
+    background-color: $input-focus-bg;
+  }
+
+  &.incorrect {
+    background-color: $input-error-bg;
+  }
+
+  &.valid {
+    padding: 1rem calc(1rem + 20px) 1rem 1rem;
+    background-color: $input-success-bg;
+
+    @include mobile {
+      padding: 0.63rem calc(0.63rem + 20px) 0.63rem 0.63rem;
+    }
   }
 
   &:focus {
-    background-color: $color-beige-200;
-    border: 1px solid $color-gray-300;
+    background-color: $input-focus-bg;
   }
 
   &::placeholder {
     font-size: 1.25rem;
     line-height: 1.42;
-    color: $color-gray-300;
+    color: $color-black-2;
 
     @include mobile {
       font-size: 1rem;

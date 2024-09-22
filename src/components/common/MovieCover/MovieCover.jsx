@@ -6,9 +6,7 @@ const MovieCover = ({ cover }) => {
   return cover ? (
     <img className={s.cover} src={cover.src} alt='Cover' />
   ) : (
-    <div className={s.iconWrapper}>
-      <Icon name='movie' className={s.movieIcon} />
-    </div>
+    <div className={s.default}></div>
   );
 };
 

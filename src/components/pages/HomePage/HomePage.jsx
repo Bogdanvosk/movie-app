@@ -24,7 +24,9 @@ const HomePage = () => {
     <>
       <Typography tag='h1'>Movie app</Typography>
       <Container>
-        <Button onClick={toggle}>Добавить фильм</Button>
+        <Button iconName='plus' onClick={toggle}>
+          Добавить фильм
+        </Button>
         <Modal closeModal={toggle} isShowing={isShowingModal}>
           <Form close={toggle} />
         </Modal>

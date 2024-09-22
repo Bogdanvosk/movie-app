@@ -4,11 +4,16 @@ import cn from 'classnames';
 import { useDropzone } from 'react-dropzone';
 import React, { useCallback } from 'react';
 import useScreenWidth from '../../../hooks/useScreenWidth';
+import { useFormContext } from 'react-hook-form';
 
 import s from './Dropzone.module.scss';
 
-const Dropzone = ({ onSetCover, className = '' }) => {
+const Dropzone = ({ onSetCover, isRequired = false, className = '' }) => {
   const screenWidth = useScreenWidth();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -32,8 +37,18 @@ const Dropzone = ({ onSetCover, className = '' }) => {
 
   return (
     <div {...getRootProps()} className={className}>
-      <input {...getInputProps()} />
-      <div className={cn(s.dropzone, { [s.active]: isDragActive })}>
+      <input
+        {...getInputProps()}
+        {...register('cover', {
+          required: isRequired,
+        })}
+      />
+      <div
+        className={cn(s.dropzone, {
+          [s.active]: isDragActive,
+          [s.error]: errors['cover'],
+        })}
+      >
         <span className={s.text}>
           Нажмите{screenWidth > 1024 && ' или перетащите файл'}, чтобы выбрать
           обложку фильма
@@ -48,4 +63,5 @@ export default Dropzone;
 Dropzone.propTypes = {
   onSetCover: PropTypes.func,
   className: PropTypes.string,
+  isRequired: PropTypes.bool,
 };
