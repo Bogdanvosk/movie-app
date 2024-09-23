@@ -36,7 +36,7 @@
   font-size: 1.25rem;
   line-height: 1.42;
   font-family: inherit;
-  color: $color-black-4;
+  color: $color-gray-300;
   background-color: $input-default-bg;
   border: none;
   border-radius: 8px;
@@ -71,7 +71,7 @@
   &::placeholder {
     font-size: 1.25rem;
     line-height: 1.42;
-    color: $color-black-2;
+    color: $color-gray-200;
 
     @include mobile {
       font-size: 1rem;

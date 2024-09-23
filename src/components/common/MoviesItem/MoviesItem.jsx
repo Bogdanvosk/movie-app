@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import cn from 'classnames';
 
 import useModal from '../../../hooks/useModal';
 import { useDispatch } from 'react-redux';
@@ -11,7 +10,7 @@ import Modal from '../Modal/Modal';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import Form from '../Form/Form';
 import MovieCover from '../MovieCover/MovieCover';
-import Icon from '../Icon/Icon';
+import FavouriteIcon from '../FavouriteIcon/FavouriteIcon';
 
 import s from './MoviesItem.module.scss';
 
@@ -26,12 +25,10 @@ const MoviesItem = ({ item }) => {
 
   return (
     <div className={s.movie}>
-      <div className={s.favouriteWrapper} onClick={onSetFavourite}>
-        <Icon
-          name='heart'
-          className={cn(s.favourite, { [s.isFavourite]: item.isFavourite })}
-        />
-      </div>
+      <FavouriteIcon
+        isFavourite={item.isFavourite}
+        onSetFavourite={onSetFavourite}
+      />
       <MovieCover cover={item.cover} />
       <div className={s.content}>
         <div className={s.firstRow}>

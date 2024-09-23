@@ -1,0 +1,37 @@
+.favourite {
+  position: absolute;
+  color: $color-white;
+  transition: fill 0.3s ease;
+  fill: transparent;
+
+  &Wrapper {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+    @include hover {
+      background-color: rgba($color-gray-200, 0.3);
+    }
+
+    &:active {
+      background-color: rgba($color-gray-200, 0.7);
+
+      svg {
+        fill: $color-red-100;
+      }
+    }
+  }
+
+  &.isFavourite {
+    fill: $color-red-100;
+  }
+}

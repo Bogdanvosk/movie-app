@@ -8,8 +8,8 @@
 }
 
 .cover {
-  width: 200px;
-  height: 240px;
+  width: 300px;
+  height: 440px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -32,51 +32,25 @@
 }
 
 .detailsModal {
-  width: 85%;
+  width: 60%;
   height: 90vh;
   overflow-y: auto;
+
+  @include tablet {
+    width: 80%;
+  }
+
+  @include mobile {
+    width: 90%;
+  }
+
+  @media (max-width: $xs) {
+    width: 100%;
+  }
 }
 
 .firstRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.favourite {
-  position: absolute;
-  color: $color-white;
-  transition: fill 0.3s ease;
-  fill: transparent;
-
-  &Wrapper {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-
-    @include hover {
-      background-color: rgba($color-black-2, 0.3);
-    }
-
-    &:active {
-      background-color: rgba($color-black-2, 0.7);
-
-      svg {
-        fill: $color-red-100;
-      }
-    }
-  }
-
-  &.isFavourite {
-    fill: $color-red-100;
-  }
 }
