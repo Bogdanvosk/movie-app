@@ -19,11 +19,11 @@
     cursor: pointer;
 
     @include hover {
-      background-color: rgba($color-gray-200, 0.3);
+      background-color: rgba($color-primary-100, 0.5);
     }
 
     &:active {
-      background-color: rgba($color-gray-200, 0.7);
+      background-color: rgba($color-primary-100, 1);
 
       svg {
         fill: $color-red-100;
