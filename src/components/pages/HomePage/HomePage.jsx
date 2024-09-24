@@ -10,6 +10,7 @@ import Form from '../../common/Form/Form';
 import Container from '../../common/Container/Container';
 import Modal from '../../common/Modal/Modal';
 import MoviesItems from '../../common/MoviesItems/MoviesItems';
+import SearchInput from '../../common/Search/Search';
 
 const HomePage = () => {
   const [isShowingModal, toggle] = useModal();
@@ -24,6 +25,7 @@ const HomePage = () => {
     <>
       <Typography tag='h1'>Movie app</Typography>
       <Container>
+        <SearchInput />
         <Button iconName='plus' onClick={toggle}>
           Добавить фильм
         </Button>

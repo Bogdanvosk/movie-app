@@ -1,0 +1,16 @@
+.wrapper {
+  position: relative;
+}
+
+.input {
+  @include input;
+
+  margin-bottom: 2rem;
+  padding-left: 50px;
+}
+
+.icon {
+  position: absolute;
+  top: 18px;
+  left: 10px;
+}
