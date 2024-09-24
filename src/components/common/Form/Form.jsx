@@ -16,16 +16,27 @@ import GridLayout from '../GridLayout/GridLayout';
 import Label from '../Label/Label';
 import Textarea from '../Textarea/Textarea';
 import Input from '../Input/Input';
-import Dropzone from '../Dropzone/Dropzone';
 import Button from '../Button/Button';
+import Dropzone from '../Dropzone/Dropzone';
 
 import s from './Form.module.scss';
 
 const Form = ({ close, item = null }) => {
-  const [cover, setCover] = useState(null);
-  const methods = useForm({ mode: 'onChange' });
+  const methods = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      name: '',
+      genre: '',
+      year: '',
+      duration: '',
+      review: '',
+      cover: null,
+    },
+  });
   const dispatch = useDispatch();
   const screenWidth = useScreenWidth();
+
+  const cover = methods.watch('cover');
 
   const onSubmit = methods.handleSubmit((data) => {
     if (item === null) {
@@ -59,16 +70,26 @@ const Form = ({ close, item = null }) => {
   useEffect(() => {
     if (item !== null) {
       Object.keys(item)
-        .filter((key) => key !== 'id' && key !== 'cover')
+        .filter((key) => key !== 'id')
         .forEach((key) => {
           methods.setValue(key, item[key]);
         });
-
-      setCover(item.cover);
     }
   }, [item]);
 
-  console.log(cover);
+  const onResetForm = () => {
+    methods.reset();
+  };
+
+  const isDirtyForm = () => {
+    const allValuesIsEmpty = Object.values(methods.getValues()).every(
+      (value) => value === '' || value === null
+    );
+
+    if (allValuesIsEmpty) return false;
+
+    return true;
+  };
 
   return (
     <FormProvider {...methods}>
@@ -103,10 +124,7 @@ const Form = ({ close, item = null }) => {
           </Label>
 
           <div className={s.dropzone}>
-            <Dropzone cover={cover} onSetCover={setCover} />
-            <span className={cn(s.cover, { [s.show]: cover })}>
-              {cover ? cover.name : 'Cover name'}
-            </span>
+            <Dropzone name='cover' />
           </div>
           <div className={s.buttons}>
             <Button
@@ -117,6 +135,17 @@ const Form = ({ close, item = null }) => {
             >
               {item ? 'Сохранить' : 'Добавить'}
             </Button>
+            {!item && (
+              <Button
+                variant='delete'
+                type='reset'
+                className={s.button}
+                onClick={onResetForm}
+                disabled={!isDirtyForm()}
+              >
+                Очистить
+              </Button>
+            )}
             {item && (
               <Button
                 variant='delete'

@@ -1,12 +1,18 @@
 import PropTypes from 'prop-types';
 
 import MoviesItem from '../MoviesItem/MoviesItem';
+import MoviesItemSkeleton from '../MoviesItem/Skeleton';
 
 import s from './MoviesItems.module.scss';
 
 const MoviesItems = ({ items }) => {
   return (
     <div className={s.movies}>
+      {items.length === 0 &&
+        Array.from({ length: 8 }).map((_, index) => (
+          <MoviesItemSkeleton key={`skeleton_${index}`} />
+        ))}
+
       {items.map((item, index) => {
         return <MoviesItem key={`${item.id}_${index}`} item={item} />;
       })}

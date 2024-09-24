@@ -40,4 +40,23 @@
 
 .error {
   background-color: $input-error-bg;
+
+  &Text {
+    color: $color-red-100;
+  }
+}
+
+.valid {
+  background-color: $input-success-bg;
+}
+
+.cover {
+  display: inline-block;
+  margin-top: 0.6rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  &.show {
+    opacity: 1;
+  }
 }

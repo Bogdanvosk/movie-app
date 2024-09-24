@@ -48,14 +48,4 @@
   }
 }
 
-.cover {
-  display: inline-block;
-  margin-top: 0.6rem;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.2s ease;
 
-  &.show {
-    opacity: 1;
-  }
-}

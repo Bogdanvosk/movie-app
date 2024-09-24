@@ -2,30 +2,49 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { useDropzone } from 'react-dropzone';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import useScreenWidth from '../../../hooks/useScreenWidth';
 import { useFormContext } from 'react-hook-form';
 
 import s from './Dropzone.module.scss';
 
-const Dropzone = ({ onSetCover, isRequired = false, className = '' }) => {
+const Dropzone = ({ name }) => {
   const screenWidth = useScreenWidth();
+
   const {
     register,
-    formState: { errors },
+    unregister,
+    watch,
+    clearErrors,
+    formState: { errors, defaultValues },
+    setValue,
   } = useFormContext();
 
-  const onDrop = useCallback((acceptedFiles) => {
-    const file = acceptedFiles[0];
+  const value = watch(name);
+  const isDirtyField = defaultValues[name] !== value;
 
-    let reader = new FileReader();
+  useEffect(() => {
+    register(name, { required: 'Файл обязателен' });
 
-    reader.onloadend = function () {
-      onSetCover({ name: file.path, src: reader.result });
+    return () => {
+      unregister(name);
     };
+  }, [register, unregister]);
 
-    reader.readAsDataURL(file);
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles[0];
+      let reader = new FileReader();
+
+      reader.onloadend = function () {
+        setValue(name, { name: file.path, src: reader.result });
+        clearErrors(name);
+      };
+
+      reader.readAsDataURL(file);
+    },
+    [setValue]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -36,17 +55,13 @@ const Dropzone = ({ onSetCover, isRequired = false, className = '' }) => {
   });
 
   return (
-    <div {...getRootProps()} className={className}>
-      <input
-        {...getInputProps()}
-        {...register('cover', {
-          required: isRequired,
-        })}
-      />
+    <div {...getRootProps()}>
+      <input {...getInputProps()} />
       <div
         className={cn(s.dropzone, {
           [s.active]: isDragActive,
-          [s.error]: errors['cover'],
+          [s.error]: errors[name],
+          [s.valid]: isDirtyField && !errors[name],
         })}
       >
         <span className={s.text}>
@@ -54,6 +69,18 @@ const Dropzone = ({ onSetCover, isRequired = false, className = '' }) => {
           обложку фильма
         </span>
       </div>
+      <span
+        className={cn(s.cover, {
+          [s.errorText]: errors[name],
+          [s.show]: value || errors[name],
+        })}
+      >
+        {value
+          ? value.name
+          : errors[name]
+          ? 'Файл обязателен'
+          : 'Файл не выбран'}
+      </span>
     </div>
   );
 };
@@ -61,7 +88,5 @@ const Dropzone = ({ onSetCover, isRequired = false, className = '' }) => {
 export default Dropzone;
 
 Dropzone.propTypes = {
-  onSetCover: PropTypes.func,
-  className: PropTypes.string,
-  isRequired: PropTypes.bool,
+  name: PropTypes.string,
 };
