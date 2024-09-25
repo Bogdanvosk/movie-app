@@ -16,4 +16,16 @@
 
 .delete {
   @include delete(15px, 30px);
+
+  @media (max-width: $xs) {
+    width: 20px;
+    height: 20px;
+  }
+
+  &::before,
+  &::after {
+    @media (max-width: $xs) {
+      width: 15px;
+    }
+  }
 }

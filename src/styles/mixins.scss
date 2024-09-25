@@ -43,11 +43,6 @@
   outline: none;
   transition: background-color 0.3s ease;
 
-  @include mobile {
-    padding: 0.63rem;
-    font-size: 1rem;
-  }
-
   @include hover {
     background-color: $input-focus-bg;
   }
@@ -106,10 +101,6 @@
     height: 2px;
     background-color: $color-black;
     content: '';
-
-    @media (max-width: $xs) {
-      width: 15px;
-    }
   }
 
   &::before {
@@ -118,10 +109,5 @@
 
   &::after {
     transform: rotate(-45deg);
-  }
-
-  @media (max-width: $xs) {
-    width: 20px;
-    height: 20px;
   }
 }

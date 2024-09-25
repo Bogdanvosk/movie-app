@@ -1,6 +1,11 @@
 .input {
   @include input;
 
+  @include mobile {
+    padding: 0.63rem;
+    font-size: 1rem;
+  }
+
   &[type='number']::-webkit-outer-spin-button,
   &[type='number']::-webkit-inner-spin-button {
     margin: 0;

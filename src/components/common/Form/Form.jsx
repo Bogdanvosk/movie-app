@@ -36,19 +36,16 @@ const Form = ({ close, item = null }) => {
   const dispatch = useDispatch();
   const screenWidth = useScreenWidth();
 
-  const cover = methods.watch('cover');
-
   const onSubmit = methods.handleSubmit((data) => {
     if (item === null) {
       const newMovie = {
         ...data,
-        cover,
         id: Date.now().toString(),
         isFavourite: false,
       };
       dispatch(addMovieAction(newMovie));
     } else {
-      const updatedMovie = { ...data, cover, id: item.id };
+      const updatedMovie = { ...data, id: item.id };
       dispatch(updateMovieAction(updatedMovie));
     }
 

@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   movies: [],
   isLoading: false,
-  search: '',
 };
 
 export const moviesSlice = createSlice({
@@ -26,9 +25,7 @@ export const moviesSlice = createSlice({
       state.movies = [...state.movies, action.payload];
     },
 
-    updateMovieAction: (state) => {
-      state.isLoading = true;
-    },
+    updateMovieAction: (state) => {},
     updateMovie: (state, action) => {
       state.movies = state.movies.map((movie) => {
         if (movie.id === action.payload.id) {
@@ -41,6 +38,7 @@ export const moviesSlice = createSlice({
       state.isLoading = true;
     },
     deleteMovie: (state, action) => {
+      state.isLoading = false;
       state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload
       );

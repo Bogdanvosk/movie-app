@@ -1,13 +1,4 @@
-import {
-  all,
-  call,
-  fork,
-  put,
-  take,
-  takeEvery,
-  takeLatest,
-  takeLeading,
-} from 'redux-saga/effects';
+import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { addMovie, deleteMovie, fetchMovies, updateMovie } from '.';
 import {
   addMovieReq,

@@ -27,13 +27,17 @@ $buttons: (
     }
   }
 
-  &:not(.onlyIcon) .icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    width: 30px;
-    height: 30px;
-    transform: translateY(-50%);
+  &:not(.onlyIcon) {
+    box-shadow: 4px 4px 9px 0px rgba(34, 60, 80, 0.2);
+
+    .icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      transform: translateY(-50%);
+    }
   }
 }
 

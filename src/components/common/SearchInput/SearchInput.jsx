@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import cn from 'classnames';
 
 import { useDispatch } from 'react-redux';
 import useDebounce from '../../../hooks/useDebounce';
@@ -7,7 +6,6 @@ import { useSearchParams } from 'react-router-dom';
 import { searchMoviesAction } from '../../../store/features/movies';
 
 import Icon from '../Icon/Icon';
-import Button from '../Button/Button';
 
 import s from './SearchInput.module.scss';
 
