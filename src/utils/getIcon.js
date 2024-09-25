@@ -6,6 +6,7 @@ import Plus from '../components/icons/Plus';
 import Save from '../components/icons/Save';
 import Delete from '../components/icons/Delete';
 import Heart from '../components/icons/Heart';
+import Search from '../components/icons/Search';
 
 export const getIcon = (iconName) => {
   switch (iconName) {
@@ -25,6 +26,8 @@ export const getIcon = (iconName) => {
       return Delete;
     case 'heart':
       return Heart;
+    case 'search':
+      return Search;
     default:
       break;
   }

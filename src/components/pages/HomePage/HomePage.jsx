@@ -10,20 +10,26 @@ import Form from '../../common/Form/Form';
 import Container from '../../common/Container/Container';
 import Modal from '../../common/Modal/Modal';
 import MoviesItems from '../../common/MoviesItems/MoviesItems';
+import SearchInput from '../../common/SearchInput/SearchInput';
+import { useSearchParams } from 'react-router-dom';
 
 const HomePage = () => {
   const [isShowingModal, toggle] = useModal();
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const allMovies = useSelector(selectAllMovies);
 
   useEffect(() => {
-    dispatch(fetchMoviesAction());
+    const searchValParam = searchParams.get('search');
+
+    !searchValParam && dispatch(fetchMoviesAction());
   }, []);
 
   return (
     <>
       <Typography tag='h1'>Movie app</Typography>
       <Container>
+        <SearchInput />
         <Button iconName='plus' onClick={toggle}>
           Добавить фильм
         </Button>

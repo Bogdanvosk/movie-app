@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   movies: [],
   isLoading: false,
+  search: '',
 };
 
 export const moviesSlice = createSlice({
@@ -36,7 +37,6 @@ export const moviesSlice = createSlice({
         return movie;
       });
     },
-
     deleteMovieAction: (state) => {
       state.isLoading = true;
     },
@@ -44,6 +44,9 @@ export const moviesSlice = createSlice({
       state.movies = state.movies.filter(
         (movie) => movie.id !== action.payload
       );
+    },
+    searchMoviesAction: (state) => {
+      state.isLoading = true;
     },
   },
 });
@@ -59,4 +62,5 @@ export const {
   updateMovie,
   deleteMovieAction,
   deleteMovie,
+  searchMoviesAction,
 } = moviesSlice.actions;

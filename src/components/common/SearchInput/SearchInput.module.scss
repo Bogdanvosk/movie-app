@@ -1,0 +1,39 @@
+.wrapper {
+  position: relative;
+}
+
+.input {
+  @include input;
+
+  margin-bottom: 2rem;
+  padding-left: 3.13rem;
+}
+
+.icon {
+  position: absolute;
+  top: 18px;
+  left: 10px;
+}
+
+.close {
+  @include delete(15px, 10px);
+
+  transition: transform 0.1s ease;
+  cursor: pointer;
+
+  &::after,
+  &::before {
+    transition: background-color 0.3s ease;
+  }
+
+  @include hover {
+    &::after,
+    &::before {
+      background-color: $color-red-100;
+    }
+  }
+
+  &:active {
+    transform: translateY(-3px);
+  }
+}
