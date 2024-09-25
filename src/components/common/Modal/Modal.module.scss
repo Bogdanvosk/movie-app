@@ -15,46 +15,5 @@
 }
 
 .delete {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border: none;
-  transition: opacity 0.3s ease;
-  cursor: pointer;
-  transform: translateY(-50%);
-
-  @include hover {
-    opacity: 0.5;
-  }
-
-  &::before,
-  &::after {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 20px;
-    height: 2px;
-    background-color: $color-gray-200;
-    content: '';
-
-    @media (max-width: $xs) {
-      width: 15px;
-    }
-  }
-
-  &::before {
-    transform: translateY(-50%) rotate(45deg);
-  }
-
-  &::after {
-    transform: translateY(-50%) rotate(-45deg);
-  }
-
-  @media (max-width: $xs) {
-    width: 20px;
-    height: 20px;
-  }
+  @include delete(15px, 30px);
 }

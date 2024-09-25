@@ -29,3 +29,11 @@ export const deleteMovieReq = async (id) => {
     .catch((err) => console.log(err));
   return id;
 };
+
+export const searchMovieReq = async (value) => {
+  const { data } = await instance
+    .get(`${MOVIES_ROUTE}?q=${value}`)
+    .catch((err) => console.log(err));
+
+  return data;
+};

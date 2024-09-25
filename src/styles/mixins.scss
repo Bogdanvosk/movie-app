@@ -41,6 +41,7 @@
   border: none;
   border-radius: 8px;
   outline: none;
+  transition: background-color 0.3s ease;
 
   @include mobile {
     padding: 0.63rem;
@@ -76,5 +77,51 @@
     @include mobile {
       font-size: 1rem;
     }
+  }
+}
+
+@mixin delete($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+
+  @include hover {
+    opacity: 0.6;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 20px;
+    height: 2px;
+    background-color: $color-black;
+    content: '';
+
+    @media (max-width: $xs) {
+      width: 15px;
+    }
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  @media (max-width: $xs) {
+    width: 20px;
+    height: 20px;
   }
 }

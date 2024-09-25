@@ -45,6 +45,9 @@ export const moviesSlice = createSlice({
         (movie) => movie.id !== action.payload
       );
     },
+    searchMoviesAction: (state) => {
+      state.isLoading = true;
+    },
   },
 });
 
@@ -59,4 +62,5 @@ export const {
   updateMovie,
   deleteMovieAction,
   deleteMovie,
+  searchMoviesAction,
 } = moviesSlice.actions;

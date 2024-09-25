@@ -10,15 +10,19 @@ import Form from '../../common/Form/Form';
 import Container from '../../common/Container/Container';
 import Modal from '../../common/Modal/Modal';
 import MoviesItems from '../../common/MoviesItems/MoviesItems';
-import SearchInput from '../../common/Search/Search';
+import SearchInput from '../../common/SearchInput/SearchInput';
+import { useSearchParams } from 'react-router-dom';
 
 const HomePage = () => {
   const [isShowingModal, toggle] = useModal();
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const allMovies = useSelector(selectAllMovies);
 
   useEffect(() => {
-    dispatch(fetchMoviesAction());
+    const searchValParam = searchParams.get('search');
+
+    !searchValParam && dispatch(fetchMoviesAction());
   }, []);
 
   return (

@@ -14,12 +14,14 @@ import {
   fetchMoviesReq,
   updateMovieReq,
   deleteMovieReq,
+  searchMovieReq,
 } from '../../../api';
 import {
   ADD_MOVIE_TYPE,
   FETCH_MOVIES_TYPE,
   UPDATE_MOVIE_TYPE,
   DELETE_MOVIE_TYPE,
+  SEARCH_MOVIE_TYPE,
 } from '../../../constants';
 
 function* rootSaga() {
@@ -31,6 +33,7 @@ function* moviesSagaWatcher() {
   yield takeLatest(ADD_MOVIE_TYPE, addMovieWorker);
   yield takeLatest(UPDATE_MOVIE_TYPE, updateMovieWorker);
   yield takeLatest(DELETE_MOVIE_TYPE, deleteMovieWorker);
+  yield takeLatest(SEARCH_MOVIE_TYPE, searchMoviesWorker);
 }
 
 function* fetchMoviesWorker() {
@@ -55,6 +58,12 @@ function* deleteMovieWorker({ payload }) {
   const id = yield call(deleteMovieReq, payload);
 
   yield put(deleteMovie(id));
+}
+
+function* searchMoviesWorker({ payload }) {
+  const data = yield call(searchMovieReq, payload);
+
+  yield put(fetchMovies(data));
 }
 
 export default rootSaga;
