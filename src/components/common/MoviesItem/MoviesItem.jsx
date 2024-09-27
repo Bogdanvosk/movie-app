@@ -13,18 +13,25 @@ import MovieCover from '../MovieCover/MovieCover';
 import FavouriteIcon from '../FavouriteIcon/FavouriteIcon';
 
 import s from './MoviesItem.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 const MoviesItem = ({ item }) => {
   const [isShowingDetails, toggleDetails] = useModal();
   const [isShowingEdit, toggleEdit] = useModal();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const onSetFavourite = () => {
+  const onSetFavourite = (e) => {
+    e.stopPropagation();
     dispatch(updateMovieAction({ ...item, isFavourite: !item.isFavourite }));
   };
 
+  const onOpenItem = () => {
+    navigate(`/movies/${item.id}`);
+  };
+
   return (
-    <div className={s.movie}>
+    <div className={s.movie} onClick={onOpenItem}>
       <FavouriteIcon
         isFavourite={item.isFavourite}
         onSetFavourite={onSetFavourite}
