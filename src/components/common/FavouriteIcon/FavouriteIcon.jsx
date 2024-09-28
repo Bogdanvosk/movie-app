@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 
 import Icon from '../Icon/Icon';
 
@@ -20,3 +21,9 @@ const FavouriteIcon = ({
 };
 
 export default FavouriteIcon;
+
+FavouriteIcon.propTypes = {
+  isFavourite: PropTypes.bool,
+  className: PropTypes.string,
+  onSetFavourite: PropTypes.func,
+};

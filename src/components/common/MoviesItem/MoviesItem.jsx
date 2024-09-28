@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import useModal from '../../../hooks/useModal';
 import { useDispatch } from 'react-redux';
 import { updateMovieAction } from '../../../store/features/movies';
+import { useNavigate } from 'react-router-dom';
 
 import Typography from '../Typography/Typography';
 import Button from '../Button/Button';
@@ -13,7 +14,6 @@ import MovieCover from '../MovieCover/MovieCover';
 import FavouriteIcon from '../FavouriteIcon/FavouriteIcon';
 
 import s from './MoviesItem.module.scss';
-import { useNavigate } from 'react-router-dom';
 
 const MoviesItem = ({ item }) => {
   const [isShowingDetails, toggleDetails] = useModal();

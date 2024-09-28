@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
 import cn from 'classnames';
 
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import useDebounce from '../../../hooks/useDebounce';
 import { useSearchParams } from 'react-router-dom';

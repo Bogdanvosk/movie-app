@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
@@ -55,7 +55,7 @@ const Form = ({ close, item = null }) => {
 
   const onDeleteMovie = () => {
     dispatch(deleteMovieAction(item.id));
-    
+
     window.localStorage.removeItem('form');
     close();
   };
