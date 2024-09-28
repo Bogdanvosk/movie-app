@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Success = ({ className = '' }) => {
   return (
     <svg
@@ -16,3 +18,7 @@ const Success = ({ className = '' }) => {
 };
 
 export default Success;
+
+Success.propTypes = {
+  className: PropTypes.string,
+};

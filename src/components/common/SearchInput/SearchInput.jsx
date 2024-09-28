@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import cn from 'classnames';
 
 import { useDispatch } from 'react-redux';
 import useDebounce from '../../../hooks/useDebounce';
@@ -45,7 +46,10 @@ const SearchInput = () => {
         type='text'
         placeholder='Поиск'
       />
-      <span className={s.close} onClick={handleClearInput}></span>
+      <span
+        className={cn(s.close, { [s.show]: searchValue })}
+        onClick={handleClearInput}
+      ></span>
     </div>
   );
 };

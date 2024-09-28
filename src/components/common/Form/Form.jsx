@@ -49,13 +49,14 @@ const Form = ({ close, item = null }) => {
       dispatch(updateMovieAction(updatedMovie));
     }
 
-    window.localStorage.clear();
+    window.localStorage.removeItem('form');
     close();
   });
 
   const onDeleteMovie = () => {
     dispatch(deleteMovieAction(item.id));
-    window.localStorage.clear();
+    
+    window.localStorage.removeItem('form');
     close();
   };
 

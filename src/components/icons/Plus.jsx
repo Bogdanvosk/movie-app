@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const Plus = ({ className = '' }) => {
   return (
@@ -44,3 +44,7 @@ const Plus = ({ className = '' }) => {
 };
 
 export default Plus;
+
+Plus.propTypes = {
+  className: PropTypes.string,
+};

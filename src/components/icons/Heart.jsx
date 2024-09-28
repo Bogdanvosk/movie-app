@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Heart = ({ className = '' }) => {
   return (
     <svg
@@ -34,3 +36,7 @@ const Heart = ({ className = '' }) => {
 };
 
 export default Heart;
+
+Heart.propTypes = {
+  className: PropTypes.string,
+};

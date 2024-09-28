@@ -3,18 +3,12 @@ import PropTypes from 'prop-types';
 import Typography from '../Typography/Typography';
 import MovieCover from '../MovieCover/MovieCover';
 import FavouriteIcon from '../FavouriteIcon/FavouriteIcon';
+import Title from '../Title/Title';
+import Subtitle from '../Subtitle/Subtitle';
 
 import s from './ItemDetails.module.scss';
 
 const ItemDetails = ({ item }) => {
-  const setDuration = (mins) => {
-    const hours = Math.floor(mins / 60);
-    const minutes = mins % 60;
-    if (hours === 0) return `${minutes}м`;
-
-    return `${hours}ч ${minutes}м`;
-  };
-
   return (
     <div className={s.details}>
       <div className={s.main}>
@@ -26,25 +20,8 @@ const ItemDetails = ({ item }) => {
           />
         </div>
         <div className={s.content}>
-          <div className={s.title}>
-            <Typography tag='h3' className={s.name}>
-              {item.name} <span className={s.year}>({item.year})</span>
-            </Typography>
-          </div>
-          <div>
-            <Typography tag='h4' className={s.subtitle}>
-              {item.genre}
-              <span className={s.dot}></span>
-              {setDuration(item.duration)}
-            </Typography>
-          </div>
-          {/* <Typography tag='h4'>
-            {item.genre && `Жанр: ${item.genre}`}
-          </Typography>
-
-          <Typography tag='p'>
-            {item.duration && `Длительность: ${item.duration} минут`}
-          </Typography> */}
+          <Title name={item.name} year={item.year} className={s.title} />
+          <Subtitle genre={item.genre} duration={item.duration} />
           <Typography tag='p' className={s.review}>
             {item.review}
           </Typography>

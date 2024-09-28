@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Save = ({ className = '' }) => {
   return (
     <svg
@@ -50,3 +52,7 @@ const Save = ({ className = '' }) => {
 };
 
 export default Save;
+
+Save.propTypes = {
+  className: PropTypes.string,
+};

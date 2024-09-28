@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Search = ({ className = '' }) => {
   return (
     <svg
@@ -34,3 +36,7 @@ const Search = ({ className = '' }) => {
 };
 
 export default Search;
+
+Search.propTypes = {
+  className: PropTypes.string,
+};

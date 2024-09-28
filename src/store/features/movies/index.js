@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   movies: [],
   isLoading: false,
+  currentMovie: {},
 };
 
 export const moviesSlice = createSlice({
@@ -46,6 +47,13 @@ export const moviesSlice = createSlice({
     searchMoviesAction: (state) => {
       state.isLoading = true;
     },
+    fetchMovieAction: (state) => {
+      state.isLoading = true;
+    },
+    fetchMovie: (state, action) => {
+      state.isLoading = false;
+      state.currentMovie = action.payload;
+    },
   },
 });
 
@@ -61,4 +69,6 @@ export const {
   deleteMovieAction,
   deleteMovie,
   searchMoviesAction,
+  fetchMovieAction,
+  fetchMovie,
 } = moviesSlice.actions;

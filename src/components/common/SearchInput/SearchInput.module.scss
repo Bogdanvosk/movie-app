@@ -19,7 +19,8 @@
 .close {
   @include delete(15px, 10px);
 
-  transition: transform 0.1s ease;
+  opacity: 0;
+  transition: transform 0.1s ease, opacity 0.3s ease;
   cursor: pointer;
 
   &::after,
@@ -37,4 +38,8 @@
   &:active {
     transform: translateY(-3px);
   }
+}
+
+.show {
+  opacity: 1;
 }

@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 
-const Edit = ({ className = '', onClick = () => {} }) => {
+const Edit = ({ className = '' }) => {
   return (
     <svg
       width='24'
       height='24'
       viewBox='0 0 24 24'
       fill='none'
-      onClick={onClick}
       className={className}
     >
       <g id='Iconly/Light/Edit Square'>

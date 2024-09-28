@@ -1,11 +1,12 @@
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
-import { addMovie, deleteMovie, fetchMovies, updateMovie } from '.';
+import { addMovie, deleteMovie, fetchMovie, fetchMovies, updateMovie } from '.';
 import {
   addMovieReq,
   fetchMoviesReq,
   updateMovieReq,
   deleteMovieReq,
   searchMovieReq,
+  fetchMovieReq,
 } from '../../../api';
 import {
   ADD_MOVIE_TYPE,
@@ -13,6 +14,7 @@ import {
   UPDATE_MOVIE_TYPE,
   DELETE_MOVIE_TYPE,
   SEARCH_MOVIE_TYPE,
+  FETCH_SINGLE_MOVIE_TYPE,
 } from '../../../constants';
 
 function* rootSaga() {
@@ -25,6 +27,7 @@ function* moviesSagaWatcher() {
   yield takeLatest(UPDATE_MOVIE_TYPE, updateMovieWorker);
   yield takeLatest(DELETE_MOVIE_TYPE, deleteMovieWorker);
   yield takeLatest(SEARCH_MOVIE_TYPE, searchMoviesWorker);
+  yield takeLatest(FETCH_SINGLE_MOVIE_TYPE, fetchSingleMovieWorker);
 }
 
 function* fetchMoviesWorker() {
@@ -55,6 +58,12 @@ function* searchMoviesWorker({ payload }) {
   const data = yield call(searchMovieReq, payload);
 
   yield put(fetchMovies(data));
+}
+
+function* fetchSingleMovieWorker({ payload: id }) {
+  const data = yield call(fetchMovieReq, id);
+
+  yield put(fetchMovie(data));
 }
 
 export default rootSaga;

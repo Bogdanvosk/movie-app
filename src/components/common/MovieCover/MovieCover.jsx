@@ -1,15 +1,18 @@
 import cn from 'classnames';
-
-import Icon from '../Icon/Icon';
+import PropTypes from 'prop-types';
 
 import s from './MovieCover.module.scss';
 
 const MovieCover = ({ cover, className = '' }) => {
-  return cover ? (
-    <img className={cn(s.cover, className)} src={cover.src} alt='Cover' />
-  ) : (
-    <div className={s.default}></div>
-  );
+  return <img className={cn(s.cover, className)} src={cover?.src} alt='Cover' />;
 };
 
 export default MovieCover;
+
+MovieCover.propTypes = {
+  cover: PropTypes.shape({
+    src: PropTypes.string,
+    name: PropTypes.string,
+  }),
+  className: PropTypes.string,
+};

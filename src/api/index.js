@@ -37,3 +37,11 @@ export const searchMovieReq = async (value) => {
 
   return data;
 };
+
+export const fetchMovieReq = async (id) => {
+  const { data } = await instance
+    .get(`${MOVIES_ROUTE}/${id}`)
+    .catch((err) => console.log(err));
+
+  return data;
+};

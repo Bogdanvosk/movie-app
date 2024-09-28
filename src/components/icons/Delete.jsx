@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Delete = ({ className = '' }) => {
   return (
     <svg
@@ -40,3 +42,7 @@ const Delete = ({ className = '' }) => {
 };
 
 export default Delete;
+
+Delete.propTypes = {
+  className: PropTypes.string,
+};
