@@ -31,46 +31,49 @@ const MoviesItem = ({ item }) => {
   };
 
   return (
-    <div className={s.movie} onClick={onOpenItem}>
-      <FavouriteIcon
-        isFavourite={item.isFavourite}
-        onSetFavourite={onSetFavourite}
-      />
-      <MovieCover cover={item.cover} />
-      <div className={s.content}>
-        <div className={s.firstRow}>
-          <Typography tag='span' className={s.year}>
-            {item.year}
-          </Typography>
-          <div className={s.buttons}>
-            <Button
-              iconName='edit'
-              onClick={toggleEdit}
-              className={s.iconBtn}
-              onlyIcon
-            />
-            <Button
-              iconName='show'
-              onClick={toggleDetails}
-              className={s.iconBtn}
-              onlyIcon
-            />
+    <>
+      <div className={s.movie} onClick={onOpenItem}>
+        <FavouriteIcon
+          isFavourite={item.isFavourite}
+          onSetFavourite={onSetFavourite}
+        />
+        <MovieCover cover={item.cover} />
+        <div className={s.content}>
+          <div className={s.firstRow}>
+            <Typography tag='span' className={s.year}>
+              {item.year}
+            </Typography>
+            <div className={s.buttons}>
+              <Button
+                iconName='edit'
+                onClick={toggleEdit}
+                className={s.iconBtn}
+                onlyIcon
+              />
+              <Button
+                iconName='show'
+                onClick={toggleDetails}
+                className={s.iconBtn}
+                onlyIcon
+              />
+            </div>
           </div>
+          <Typography tag='h3'>{item.name}</Typography>
+          <Typography tag='span'>{item.genre}</Typography>
         </div>
-        <Modal
-          className={s.detailsModal}
-          closeModal={toggleDetails}
-          isShowing={isShowingDetails}
-        >
-          <ItemDetails item={item} />
-        </Modal>
-        <Modal closeModal={toggleEdit} isShowing={isShowingEdit} isEdit>
-          <Form item={item} close={toggleEdit} />
-        </Modal>
-        <Typography tag='h3'>{item.name}</Typography>
-        <Typography tag='span'>{item.genre}</Typography>
       </div>
-    </div>
+      
+      <Modal
+        className={s.detailsModal}
+        closeModal={toggleDetails}
+        isShowing={isShowingDetails}
+      >
+        <ItemDetails item={item} />
+      </Modal>
+      <Modal closeModal={toggleEdit} isShowing={isShowingEdit} isEdit>
+        <Form item={item} close={toggleEdit} />
+      </Modal>
+    </>
   );
 };
 

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Movie = ({ className = '' }) => {
   return (
     <svg
@@ -27,3 +29,7 @@ const Movie = ({ className = '' }) => {
 };
 
 export default Movie;
+
+Movie.propTypes = {
+  className: PropTypes.string,
+};

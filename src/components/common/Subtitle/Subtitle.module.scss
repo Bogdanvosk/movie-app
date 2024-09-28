@@ -1,0 +1,13 @@
+.subtitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  line-height: 1.19;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 2px;
+  background-color: $color-black;
+}

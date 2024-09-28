@@ -25,7 +25,7 @@ const Modal = ({
 
     target.type !== 'button' && closeModal(e);
 
-    isEdit && window.localStorage.clear();
+    isEdit && window.localStorage.removeItem('form');
   };
 
   useOutsideClick(modalRef, onCloseModal);

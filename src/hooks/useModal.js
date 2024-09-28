@@ -4,10 +4,7 @@ const useModal = (defaultValue = false) => {
   const [isShowingModal, setIsShowingModal] = useState(defaultValue);
 
   const toggle = (e) => {
-    console.log('e', e);
-    
     e.stopPropagation();
-
     setIsShowingModal(!isShowingModal);
   };
 

@@ -1,0 +1,106 @@
+.item {
+  padding-top: 3.75rem;
+  padding-bottom: 1rem;
+
+  @include mobile {
+    padding-top: 2rem;
+  }
+}
+
+.wrapper {
+  display: flex;
+  gap: 2.81rem;
+
+  @include mobile {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.cover {
+  width: auto;
+  height: 444px;
+
+  @include mobile {
+    width: 300px;
+    height: auto;
+  }
+
+  @media (max-width: $xs) {
+    width: 280px;
+  }
+
+  &Wrapper {
+    position: relative;
+  }
+}
+
+.subtitle {
+  margin-top: 0.63rem;
+}
+
+.content {
+  margin-top: 2rem;
+}
+
+.review {
+  margin-top: 3.13rem;
+
+  @include mobile {
+    margin-top: 2rem;
+  }
+
+  span {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  &Text {
+    max-width: 85%;
+    margin-top: 0.63rem;
+    line-height: 1.5;
+  }
+}
+
+.favourite {
+  right: auto;
+  left: 6px;
+  cursor: auto;
+
+  @include hover {
+    background-color: transparent;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+}
+
+.back {
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
+
+  @media (max-width: $xs) {
+    display: none;
+  }
+
+  @include hover {
+    .backIcon {
+      opacity: 0.65;
+    }
+  }
+
+  &:active {
+    .backIcon {
+      transform: translateX(-5px);
+    }
+  }
+
+  &Icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.1s ease, opacity 0.3s ease;
+  }
+}

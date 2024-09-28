@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Show = ({ className = '' }) => {
   return (
     <svg
@@ -50,3 +52,7 @@ const Show = ({ className = '' }) => {
 };
 
 export default Show;
+
+Show.propTypes = {
+  className: PropTypes.string,
+};
