@@ -37,11 +37,16 @@
   line-height: 1.42;
   font-family: inherit;
   color: $color-gray-300;
-  background-color: $input-default-bg;
+  background-color: transparent;
   border: none;
   border-radius: 8px;
   outline: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: $shadow-hidden, $inner-shadow;
+
+  &:focus {
+    box-shadow: $shadow;
+  }
 
   @include hover {
     background-color: $input-focus-bg;

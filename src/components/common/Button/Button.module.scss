@@ -1,21 +1,25 @@
 $buttons: (
-  'default' $color-primary-100 $color-primary-200,
-  'save' $color-green-100 $color-green-200,
-  'delete' $color-red-100 $color-red-200
+  // 'save' $color-green $color-green-200,
+  // 'delete' $color-red $color-red-200
 );
 
 .button {
   padding: 1rem;
   font-size: 20px;
   font-family: inherit;
-  color: $color-white;
+  color: $color-lightGray-1;
+  background-color: $color-primary-100;
   border: none;
   border-radius: 12px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
   cursor: pointer;
 
   @include mobile {
     font-size: 1rem;
+  }
+
+  @include hover {
+    color: $color-white;
   }
 
   &:disabled {
@@ -23,21 +27,24 @@ $buttons: (
     cursor: not-allowed;
 
     @include hover {
-      background-color: $color-red-100;
+      background-color: $color-red;
+      color: $color-lightGray-1;
+    }
+
+    &:active {
+      background-color: $color-red;
+      box-shadow: inset 0.2rem 0.2rem 1rem $color-red-shadow-100,
+        inset -0.2rem -0.2rem 1rem $color-red-shadow-200, $shadow;
     }
   }
 
-  &:not(.onlyIcon) {
-    box-shadow: 4px 4px 9px 0px rgba(34, 60, 80, 0.2);
-
-    .icon {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      width: 30px;
-      height: 30px;
-      transform: translateY(-50%);
-    }
+  &:not(.onlyIcon) .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    transform: translateY(-50%);
   }
 }
 
@@ -46,18 +53,50 @@ $buttons: (
   padding: 1rem 4rem 1rem 1rem;
 }
 
-@each $name, $color100, $color200 in $buttons {
-  .#{$name} {
-    background-color: $color100;
+// @each $name, $color100, $color200 in $buttons {
+//   .#{$name} {
+//     background-color: $color100;
 
-    @include hover {
-      background-color: darken($color100, 10%);
-    }
+//     @include hover {
+//       background-color: darken($color100, 10%);
+//     }
 
-    &:active {
-      background-color: $color200;
-      box-shadow: inset 0 4px 20px 0 rgba(0, 0, 0, 0.2);
-    }
+//     &:active {
+//       background-color: $color200;
+//       box-shadow: inset 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+//     }
+//   }
+// }
+
+.default {
+  box-shadow: inset 0.2rem 0.2rem 1rem $color-primary-shadow-100,
+    inset -0.2rem -0.2rem 1rem $color-primary-shadow-200, $shadow;
+
+  &:active {
+    box-shadow: inset 0.2rem 0.2rem 1rem $color-primary-shadow-200,
+      inset -0.2rem -0.2rem 1rem $color-primary-shadow-100;
+  }
+}
+
+.delete {
+  background-color: $color-red;
+  box-shadow: inset 0.2rem 0.2rem 1rem $color-red-shadow-100,
+    inset -0.2rem -0.2rem 1rem $color-red-shadow-200, $shadow;
+
+  &:active {
+    box-shadow: inset 0.2rem 0.2rem 1rem $color-red-shadow-200,
+      inset -0.2rem -0.2rem 1rem $color-red-shadow-100;
+  }
+}
+
+.save {
+  background-color: $color-green;
+  box-shadow: inset 0.2rem 0.2rem 1rem #7bffce,
+    inset -0.2rem -0.2rem 1rem #00432a, $shadow;
+
+  &:active {
+    box-shadow: inset 0.2rem 0.2rem 1rem #00432a,
+      inset -0.2rem -0.2rem 1rem #7bffce;
   }
 }
 

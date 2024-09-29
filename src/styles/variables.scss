@@ -7,6 +7,9 @@ $color-white: #ffffff;
 
 $color-black: #111827;
 
+$color-lightGray-1: #e4ebf5;
+$color-lightGray-2: #c8d0e7;
+
 $color-gray-100: #9ca3af;
 $color-gray-200: #abafb1;
 $color-gray-300: #5e6366;
@@ -14,11 +17,13 @@ $color-gray-300: #5e6366;
 $color-primary-100: #5570f1;
 $color-primary-200: #5b6ec6;
 
-$color-red-100: #f56159;
-$color-red-200: #c95f58;
+$color-red: #fa554c;
 
-$color-green-100: #32936f;
-$color-green-200: #458b71;
+$color-red-shadow-100: #ffc1bd;
+$color-red-shadow-200: #9c0b00;
+
+$color-green: #32936f;
+// $color-green-200: #458b71;
 
 $color-beige: #f9f7f4;
 
@@ -28,3 +33,13 @@ $input-error-bg: rgba(252, 243, 242, 0.7);
 $input-success-bg: rgba(240, 249, 246, 0.7);
 
 $primary-font: 'Open Sans', 'Arial', sans-serif;
+
+$color-primary-shadow-100: #8abdff;
+$color-primary-shadow-200: #5b0eeb;
+
+$shadow: 0.3rem 0.3rem 0.6rem $color-lightGray-2,
+  -0.2rem -0.2rem 0.5rem $color-white;
+$inner-shadow: inset 0.2rem 0.2rem 0.5rem $color-lightGray-2,
+  inset -0.2rem -0.2rem 0.5rem $color-white;
+
+$shadow-hidden: 0 0 0 $color-lightGray-2, 0 0 0 $color-white;

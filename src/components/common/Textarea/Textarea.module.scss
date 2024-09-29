@@ -17,7 +17,7 @@
 }
 
 .error {
-  color: $color-red-100;
+  color: $color-red;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -38,7 +38,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    color: $color-green-100;
+    color: $color-green;
     transform: translate(-50%, -50%);
   }
 }

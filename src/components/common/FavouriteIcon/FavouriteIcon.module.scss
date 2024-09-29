@@ -26,12 +26,12 @@
       background-color: rgba($color-primary-100, 1);
 
       svg {
-        fill: $color-red-100;
+        fill: $color-red;
       }
     }
   }
 
   &.isFavourite {
-    fill: $color-red-100;
+    fill: $color-red;
   }
 }
