@@ -30,6 +30,11 @@ const MoviesItem = ({ item }) => {
     navigate(`/movies/${item.id}`);
   };
 
+  const handleClickModal = (e, toggleModal) => {
+    e.stopPropagation();
+    toggleModal();
+  };
+
   return (
     <>
       <div className={s.movie} onClick={onOpenItem}>
@@ -46,13 +51,13 @@ const MoviesItem = ({ item }) => {
             <div className={s.buttons}>
               <Button
                 iconName='edit'
-                onClick={toggleEdit}
+                onClick={(e) => handleClickModal(e, toggleEdit)}
                 className={s.iconBtn}
                 onlyIcon
               />
               <Button
                 iconName='show'
-                onClick={toggleDetails}
+                onClick={(e) => handleClickModal(e, toggleDetails)}
                 className={s.iconBtn}
                 onlyIcon
               />
@@ -62,7 +67,7 @@ const MoviesItem = ({ item }) => {
           <Typography tag='span'>{item.genre}</Typography>
         </div>
       </div>
-      
+
       <Modal
         className={s.detailsModal}
         closeModal={toggleDetails}

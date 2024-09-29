@@ -3,8 +3,7 @@ import { useState } from 'react';
 const useModal = (defaultValue = false) => {
   const [isShowingModal, setIsShowingModal] = useState(defaultValue);
 
-  const toggle = (e) => {
-    e.stopPropagation();
+  const toggle = () => {
     setIsShowingModal(!isShowingModal);
   };
 

@@ -1,8 +1,8 @@
-import { FormProvider, useForm } from 'react-hook-form';
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import { FormProvider, useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   addMovieAction,
@@ -36,6 +36,8 @@ const Form = ({ close, item = null }) => {
   const dispatch = useDispatch();
   const screenWidth = useScreenWidth();
 
+  const isDirty = methods.formState.isDirty;
+
   const onSubmit = methods.handleSubmit((data) => {
     if (item === null) {
       const newMovie = {
@@ -45,6 +47,8 @@ const Form = ({ close, item = null }) => {
       };
       dispatch(addMovieAction(newMovie));
     } else {
+      if (!isDirty) return;
+
       const updatedMovie = { ...data, id: item.id };
       dispatch(updateMovieAction(updatedMovie));
     }
