@@ -16,16 +16,16 @@ $color-gray-300: #5e6366;
 
 $color-primary-100: #5570f1;
 $color-primary-200: #5b6ec6;
+$color-primary-shadow-100: #8abdff;
+$color-primary-shadow-200: #5b0eeb;
 
 $color-red: #fa554c;
-
 $color-red-shadow-100: #ffc1bd;
 $color-red-shadow-200: #9c0b00;
 
 $color-green: #32936f;
-// $color-green-200: #458b71;
-
-$color-beige: #f9f7f4;
+$color-green-shadow-100: #7bffce;
+$color-green-shadow-200: #00432a;
 
 $input-default-bg: rgba(239, 241, 249, 0.6);
 $input-focus-bg: rgba(233, 236, 248, 0.9);
@@ -34,12 +34,10 @@ $input-success-bg: rgba(240, 249, 246, 0.7);
 
 $primary-font: 'Open Sans', 'Arial', sans-serif;
 
-$color-primary-shadow-100: #8abdff;
-$color-primary-shadow-200: #5b0eeb;
-
 $shadow: 0.3rem 0.3rem 0.6rem $color-lightGray-2,
   -0.2rem -0.2rem 0.5rem $color-white;
 $inner-shadow: inset 0.2rem 0.2rem 0.5rem $color-lightGray-2,
   inset -0.2rem -0.2rem 0.5rem $color-white;
 
 $shadow-hidden: 0 0 0 $color-lightGray-2, 0 0 0 $color-white;
+$inner-shadow-hidden: inset 0 0 0 $color-lightGray-2, inset 0 0 0 $color-white;

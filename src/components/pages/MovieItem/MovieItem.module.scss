@@ -80,6 +80,11 @@
   position: fixed;
   top: 5%;
   right: 5%;
+  padding: 0.5rem;
+  background-color: $color-white;
+  border-radius: 100%;
+  transition: box-shadow 0.1s ease, background-color 0.1s ease;
+  box-shadow: $inner-shadow-hidden, $shadow;
   cursor: pointer;
 
   @media (max-width: $xs) {
@@ -87,20 +92,17 @@
   }
 
   @include hover {
-    .backIcon {
-      opacity: 0.65;
-    }
+    background-color: darken($color-white, 5%);
   }
 
   &:active {
-    .backIcon {
-      transform: translateX(-5px);
-    }
+    box-shadow: $inner-shadow;
+    background-color: $color-white;
   }
 
   &Icon {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     transition: transform 0.1s ease, opacity 0.3s ease;
   }
 }
