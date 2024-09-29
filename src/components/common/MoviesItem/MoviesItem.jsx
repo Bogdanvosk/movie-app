@@ -6,12 +6,12 @@ import { updateMovieAction } from '../../../store/features/movies';
 import { useNavigate } from 'react-router-dom';
 
 import Typography from '../Typography/Typography';
-import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import ItemDetails from '../ItemDetails/ItemDetails';
 import Form from '../Form/Form';
 import MovieCover from '../MovieCover/MovieCover';
 import FavouriteIcon from '../FavouriteIcon/FavouriteIcon';
+import Icon from '../Icon/Icon';
 
 import s from './MoviesItem.module.scss';
 
@@ -49,18 +49,18 @@ const MoviesItem = ({ item }) => {
               {item.year}
             </Typography>
             <div className={s.buttons}>
-              <Button
-                iconName='edit'
+              <div
+                className={s.iconBtn}
                 onClick={(e) => handleClickModal(e, toggleEdit)}
+              >
+                <Icon name='edit' />
+              </div>
+              <div
                 className={s.iconBtn}
-                onlyIcon
-              />
-              <Button
-                iconName='show'
                 onClick={(e) => handleClickModal(e, toggleDetails)}
-                className={s.iconBtn}
-                onlyIcon
-              />
+              >
+                <Icon name='show' />
+              </div>
             </div>
           </div>
           <Typography tag='h3'>{item.name}</Typography>
