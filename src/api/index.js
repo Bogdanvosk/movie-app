@@ -32,7 +32,7 @@ export const deleteMovieReq = async (id) => {
 
 export const searchMovieReq = async (value) => {
   const { data } = await instance
-    .get(`${MOVIES_ROUTE}?q=${value}`)
+    .get(`${MOVIES_ROUTE}?name_like=${value}`)
     .catch((err) => console.log(err));
 
   return data;

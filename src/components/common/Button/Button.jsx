@@ -11,14 +11,13 @@ const Button = ({
   iconName = '',
   type = 'button',
   className = '',
-  onlyIcon = false,
   ...props
 }) => {
   return (
     <button
       className={cn(
         s.button,
-        { [s.withIcon]: iconName !== '', [s.onlyIcon]: onlyIcon },
+        { [s.withIcon]: iconName !== '' },
         s[variant],
         className
       )}
@@ -26,7 +25,7 @@ const Button = ({
       {...props}
     >
       {iconName !== '' && <Icon className={s.icon} name={iconName} />}
-      {!onlyIcon && children}
+      {children}
     </button>
   );
 };
@@ -37,6 +36,6 @@ Button.propTypes = {
   children: PropTypes.node,
   iconName: PropTypes.string,
   type: PropTypes.string,
+  variant: PropTypes.oneOf(['default', 'save', 'delete']),
   className: PropTypes.string,
-  onlyIcon: PropTypes.bool,
 };

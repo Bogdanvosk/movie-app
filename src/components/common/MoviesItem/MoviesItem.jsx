@@ -68,15 +68,11 @@ const MoviesItem = ({ item }) => {
         </div>
       </div>
 
-      <Modal
-        className={s.detailsModal}
-        closeModal={toggleDetails}
-        isShowing={isShowingDetails}
-      >
-        <ItemDetails item={item} />
+      <Modal closeModal={toggleDetails} isShowing={isShowingDetails} className={s.detailsModal}>
+        <ItemDetails item={item} className={s.details} />
       </Modal>
       <Modal closeModal={toggleEdit} isShowing={isShowingEdit} isEdit>
-        <Form item={item} close={toggleEdit} />
+        <Form item={item} close={toggleEdit} className={s.editForm} />
       </Modal>
     </>
   );
@@ -86,11 +82,13 @@ export default MoviesItem;
 
 MoviesItem.propTypes = {
   item: PropTypes.shape({
+    id: PropTypes.string,
     name: PropTypes.string.isRequired,
     genre: PropTypes.string,
     year: PropTypes.string,
     duration: PropTypes.string,
     review: PropTypes.string,
+    isFavourite: PropTypes.bool,
     cover: PropTypes.shape({
       src: PropTypes.string,
       name: PropTypes.string,

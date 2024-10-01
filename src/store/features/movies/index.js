@@ -26,7 +26,7 @@ export const moviesSlice = createSlice({
       state.movies = [...state.movies, action.payload];
     },
 
-    updateMovieAction: (state) => {},
+    updateMovieAction: () => {},
     updateMovie: (state, action) => {
       state.movies = state.movies.map((movie) => {
         if (movie.id === action.payload.id) {

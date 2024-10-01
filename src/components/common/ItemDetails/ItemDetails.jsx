@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import Typography from '../Typography/Typography';
 import MovieCover from '../MovieCover/MovieCover';
@@ -8,9 +9,9 @@ import Subtitle from '../Subtitle/Subtitle';
 
 import s from './ItemDetails.module.scss';
 
-const ItemDetails = ({ item }) => {
+const ItemDetails = ({ item, className = '' }) => {
   return (
-    <div className={s.details}>
+    <div className={cn(s.details, className)}>
       <div className={s.main}>
         <div className={s.coverWrapper}>
           <MovieCover className={s.cover} cover={item.cover} />
@@ -35,14 +36,17 @@ export default ItemDetails;
 
 ItemDetails.propTypes = {
   item: PropTypes.shape({
+    id: PropTypes.string,
     name: PropTypes.string.isRequired,
     genre: PropTypes.string,
     year: PropTypes.string,
     duration: PropTypes.string,
     review: PropTypes.string,
+    isFavourite: PropTypes.bool,
     cover: PropTypes.shape({
       src: PropTypes.string,
       name: PropTypes.string,
     }),
   }),
+  className: PropTypes.string,
 };

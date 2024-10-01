@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import store from './store';
 
-import 'react-loading-skeleton/dist/skeleton.css';
 import './styles/globals.scss';
 
 createRoot(document.getElementById('root')).render(

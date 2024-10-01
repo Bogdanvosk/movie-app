@@ -17,9 +17,8 @@
 .delete {
   @include delete(15px, 30px);
 
-  @media (max-width: $xs) {
-    width: 20px;
-    height: 20px;
+  @include mobile {
+    display: none;
   }
 
   &::before,

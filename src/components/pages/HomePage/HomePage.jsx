@@ -13,6 +13,8 @@ import Modal from '../../common/Modal/Modal';
 import MoviesItems from '../../common/MoviesItems/MoviesItems';
 import SearchInput from '../../common/SearchInput/SearchInput';
 
+import s from './HomePage.module.scss';
+
 const HomePage = () => {
   const [isShowingModal, toggle] = useModal();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +25,7 @@ const HomePage = () => {
     const searchValParam = searchParams.get('search');
 
     !searchValParam && dispatch(fetchMoviesAction());
-  }, []);
+  }, [dispatch, searchParams]);
 
   return (
     <>
@@ -34,7 +36,7 @@ const HomePage = () => {
           Добавить фильм
         </Button>
         <Modal closeModal={toggle} isShowing={isShowingModal}>
-          <Form close={toggle} />
+          <Form close={toggle} className={s.addForm} />
         </Modal>
         <MoviesItems items={allMovies} />
       </Container>

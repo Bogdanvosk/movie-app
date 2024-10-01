@@ -49,4 +49,6 @@ Modal.propTypes = {
   isShowing: PropTypes.bool,
   closeModal: PropTypes.func,
   children: PropTypes.node,
+  className: PropTypes.string,
+  isEdit: PropTypes.bool,
 };
