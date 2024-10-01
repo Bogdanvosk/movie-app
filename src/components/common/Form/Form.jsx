@@ -21,7 +21,7 @@ import Dropzone from '../Dropzone/Dropzone';
 
 import s from './Form.module.scss';
 
-const Form = ({ close, item = null }) => {
+const Form = ({ close, item = null, className = '' }) => {
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -36,7 +36,7 @@ const Form = ({ close, item = null }) => {
   const dispatch = useDispatch();
   const screenWidth = useScreenWidth();
 
-  const isDirty = methods.formState.isDirty;
+  // const isDirty = methods.formState.isDirty;
 
   const onSubmit = methods.handleSubmit((data) => {
     if (item === null) {
@@ -47,9 +47,9 @@ const Form = ({ close, item = null }) => {
       };
       dispatch(addMovieAction(newMovie));
     } else {
-      if (!isDirty) return;
-
+      // TODO: if no changes, don't dispatch
       const updatedMovie = { ...data, id: item.id };
+
       dispatch(updateMovieAction(updatedMovie));
     }
 
@@ -79,9 +79,6 @@ const Form = ({ close, item = null }) => {
     }
   }, [item, methods]);
 
-  console.log(methods.getValues());
-  
-
   const onResetForm = () => {
     methods.reset();
   };
@@ -98,7 +95,7 @@ const Form = ({ close, item = null }) => {
 
   return (
     <FormProvider {...methods}>
-      <form className={s.form} onSubmit={onSubmit}>
+      <form className={cn(s.form, className)} onSubmit={onSubmit}>
         <GridLayout>
           <Label title='Название' fieldName='name'>
             <Input
@@ -173,6 +170,7 @@ export default Form;
 
 Form.propTypes = {
   close: PropTypes.func,
+  className: PropTypes.string,
   item: PropTypes.shape({
     name: PropTypes.string,
     genre: PropTypes.string,

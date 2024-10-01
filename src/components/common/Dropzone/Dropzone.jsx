@@ -12,12 +12,12 @@ const Dropzone = ({ name }) => {
     unregister,
     watch,
     clearErrors,
-    formState: { errors, defaultValues },
+    formState: { errors, dirtyFields },
     setValue,
   } = useFormContext();
 
   const value = watch(name);
-  const isDirtyField = defaultValues[name] !== value;
+  const isValidField = dirtyFields[name] && !errors[name];
 
   useEffect(() => {
     register(name, {
@@ -33,7 +33,7 @@ const Dropzone = ({ name }) => {
     const file = e.target.files[0];
     const urlImage = URL.createObjectURL(file);
 
-    setValue(name, { name: file.name, src: urlImage });
+    setValue(name, { name: file.name, src: urlImage }, { shouldDirty: true });
     clearErrors(name);
   };
 
@@ -42,7 +42,7 @@ const Dropzone = ({ name }) => {
       <label
         className={cn(s.label, {
           [s.error]: errors[name],
-          [s.valid]: isDirtyField && !errors[name],
+          [s.valid]: isValidField,
         })}
       >
         <span className={s.text}>Нажмите чтобы выбрать обложку фильма</span>
