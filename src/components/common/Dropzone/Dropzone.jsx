@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { useDropzone } from 'react-dropzone';
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import useScreenWidth from '../../../hooks/useScreenWidth';
 import { useFormContext } from 'react-hook-form';
 
@@ -29,7 +29,7 @@ const Dropzone = ({ name }) => {
     return () => {
       unregister(name);
     };
-  }, [register, unregister]);
+  }, [register, unregister, name]);
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -43,7 +43,7 @@ const Dropzone = ({ name }) => {
 
       reader.readAsDataURL(file);
     },
-    [setValue]
+    [setValue, clearErrors, name]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

@@ -46,6 +46,6 @@ const Textarea = ({ fieldName, className = '', ...props }) => {
 export default Textarea;
 
 Textarea.propTypes = {
-  name: PropTypes.string,
+  fieldName: PropTypes.string,
   className: PropTypes.string,
 };

@@ -23,7 +23,7 @@ const HomePage = () => {
     const searchValParam = searchParams.get('search');
 
     !searchValParam && dispatch(fetchMoviesAction());
-  }, []);
+  }, [dispatch, searchParams]);
 
   return (
     <>

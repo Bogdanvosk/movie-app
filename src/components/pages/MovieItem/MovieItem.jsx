@@ -22,7 +22,7 @@ const MovieItem = () => {
 
   useEffect(() => {
     dispatch(fetchMovieAction(id));
-  }, [id]);
+  }, [id, dispatch]);
 
   const handleBackClick = () => {
     navigate(-1);

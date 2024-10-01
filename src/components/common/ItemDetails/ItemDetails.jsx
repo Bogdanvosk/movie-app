@@ -35,11 +35,13 @@ export default ItemDetails;
 
 ItemDetails.propTypes = {
   item: PropTypes.shape({
+    id: PropTypes.string,
     name: PropTypes.string.isRequired,
     genre: PropTypes.string,
     year: PropTypes.string,
     duration: PropTypes.string,
     review: PropTypes.string,
+    isFavourite: PropTypes.bool,
     cover: PropTypes.shape({
       src: PropTypes.string,
       name: PropTypes.string,

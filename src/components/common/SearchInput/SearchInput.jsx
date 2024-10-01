@@ -24,7 +24,7 @@ const SearchInput = () => {
     dispatch(searchMoviesAction(val));
 
     searchValue !== '' ? setSearchParams({ search: val }) : setSearchParams({});
-  }, [debounceValue.trim()]);
+  }, [debounceValue, dispatch, searchValue, setSearchParams]);
 
   const handleInput = (e) => {
     setSearchValue(e.target.value);
