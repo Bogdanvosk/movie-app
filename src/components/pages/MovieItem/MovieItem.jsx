@@ -2,7 +2,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchMovieAction } from '../../../store/features/movies';
-import { selectCurrentMovie } from '../../../store/features/movies/selectors';
+import {
+  selectCurrentMovie,
+  selectIsLoading,
+} from '../../../store/features/movies/selectors';
 
 import Container from '../../common/Container/Container';
 import Title from '../../common/Title/Title';
@@ -11,6 +14,7 @@ import Subtitle from '../../common/Subtitle/Subtitle';
 import Typography from '../../common/Typography/Typography';
 import FavouriteIcon from '../../common/FavouriteIcon/FavouriteIcon';
 import Icon from '../../common/Icon/Icon';
+import Skeleton from './Skeleton';
 
 import s from './MovieItem.module.scss';
 
@@ -18,6 +22,7 @@ const MovieItem = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const movie = useSelector(selectCurrentMovie);
+  const isLoading = useSelector(selectIsLoading);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +32,10 @@ const MovieItem = () => {
   const handleBackClick = () => {
     navigate(-1);
   };
+
+  if (isLoading) {
+    return <Skeleton />;
+  }
 
   return (
     <div className={s.item}>

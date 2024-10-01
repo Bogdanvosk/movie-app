@@ -33,10 +33,24 @@
   &Wrapper {
     position: relative;
   }
+
+  &Skeleton {
+    @include skeleton(300px, 444px, 0.63rem);
+  }
+}
+
+.titleSkeleton {
+  @include skeleton(390px, 56px, 0.63rem);
 }
 
 .subtitle {
   margin-top: 0.63rem;
+
+  &Skeleton {
+    margin-top: 0.63rem;
+    
+    @include skeleton(270px, 30px, 0.63rem);
+  }
 }
 
 .content {
@@ -60,6 +74,16 @@
     margin-top: 0.63rem;
     line-height: 1.5;
   }
+
+  &Skeleton {
+    margin-top: 3.13rem;
+
+    @include skeleton(150px, 30px, 0.63rem);
+  }
+}
+
+.reviewSkeleton {
+  @include skeleton(700px, 400px, 0.63rem);
 }
 
 .favourite {

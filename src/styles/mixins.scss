@@ -118,6 +118,7 @@
   height: $height;
   background-color: #eee;
   border-radius: $radius;
+  overflow: hidden;
 
   &::after {
     position: absolute;
