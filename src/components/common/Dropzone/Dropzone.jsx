@@ -1,16 +1,12 @@
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
-import { useDropzone } from 'react-dropzone';
-import { useCallback, useEffect } from 'react';
-import useScreenWidth from '../../../hooks/useScreenWidth';
+import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import s from './Dropzone.module.scss';
 
 const Dropzone = ({ name }) => {
-  const screenWidth = useScreenWidth();
-
   const {
     register,
     unregister,
@@ -24,51 +20,39 @@ const Dropzone = ({ name }) => {
   const isDirtyField = defaultValues[name] !== value;
 
   useEffect(() => {
-    register(name, { required: 'Файл обязателен' });
+    register(name, {
+      required: 'Файл обязателен',
+    });
 
     return () => {
       unregister(name);
     };
   }, [register, unregister, name]);
 
-  const onDrop = useCallback(
-    (acceptedFiles) => {
-      const file = acceptedFiles[0];
-      let reader = new FileReader();
+  const onSelect = (e) => {
+    const file = e.target.files[0];
+    const urlImage = URL.createObjectURL(file);
 
-      reader.onloadend = function () {
-        setValue(name, { name: file.path, src: reader.result });
-        clearErrors(name);
-      };
-
-      reader.readAsDataURL(file);
-    },
-    [setValue, clearErrors, name]
-  );
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    maxFiles: 1,
-    accept: {
-      'image/png': ['.jpeg', '.jpg', '.png'],
-    },
-  });
+    setValue(name, { name: file.name, src: urlImage });
+    clearErrors(name);
+  };
 
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      <div
-        className={cn(s.dropzone, {
-          [s.active]: isDragActive,
+    <div className={s.wrapper}>
+      <label
+        className={cn(s.label, {
           [s.error]: errors[name],
           [s.valid]: isDirtyField && !errors[name],
         })}
       >
-        <span className={s.text}>
-          Нажмите{screenWidth > 1024 && ' или перетащите файл'}, чтобы выбрать
-          обложку фильма
-        </span>
-      </div>
+        <span className={s.text}>Нажмите чтобы выбрать обложку фильма</span>
+        <input
+          type='file'
+          accept='image/png, image/gif, image/jpeg'
+          hidden
+          onChange={onSelect}
+        />
+      </label>
       <span
         className={cn(s.cover, {
           [s.errorText]: errors[name],

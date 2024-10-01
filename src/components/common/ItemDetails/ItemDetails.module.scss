@@ -61,6 +61,11 @@
     background-color: transparent;
   }
 
+  @include mobile {
+    right: auto;
+    left: 0;
+  }
+
   &:active {
     background-color: transparent;
   }

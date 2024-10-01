@@ -79,6 +79,9 @@ const Form = ({ close, item = null }) => {
     }
   }, [item, methods]);
 
+  console.log(methods.getValues());
+  
+
   const onResetForm = () => {
     methods.reset();
   };
