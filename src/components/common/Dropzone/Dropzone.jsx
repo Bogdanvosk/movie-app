@@ -31,10 +31,19 @@ const Dropzone = ({ name }) => {
 
   const onSelect = (e) => {
     const file = e.target.files[0];
-    const urlImage = URL.createObjectURL(file);
+    const reader = new FileReader();
 
-    setValue(name, { name: file.name, src: urlImage }, { shouldDirty: true });
-    clearErrors(name);
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      const image = reader.result;
+
+      setValue(name, { name: file.name, src: image }, { shouldDirty: true });
+      clearErrors(name);
+    };
+    reader.onerror = () => {
+      console.log('error with image uploading');
+    };
   };
 
   return (
