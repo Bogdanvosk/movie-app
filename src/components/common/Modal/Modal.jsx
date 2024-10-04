@@ -2,35 +2,23 @@ import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import cn from 'classnames';
 
-import { useEffect, useRef } from 'react';
+import { useModalContext } from '../ModalPovider/ModalPovider';
+import { useRef } from 'react';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 
 import s from './Modal.module.scss';
 
-const Modal = ({
-  isShowing,
-  closeModal,
-  children,
-  className = '',
-  isEdit = false,
-}) => {
+const Modal = ({ children, isEdit, className = '' }) => {
+  const { hideModal } = useModalContext();
   const modalRef = useRef(null);
-
-  useEffect(() => {
-    document.body.style.overflow = isShowing ? 'hidden' : 'auto';
-  }, [isShowing]);
 
   const onCloseModal = (e) => {
     const target = e.target.closest('button') || e.target;
-    target.type !== 'button' && closeModal(e);
+    target.type !== 'button' && hideModal();
     isEdit && window.localStorage.removeItem('form');
   };
 
   useOutsideClick(modalRef, onCloseModal);
-
-  if (!isShowing) {
-    return null;
-  }
 
   return createPortal(
     <div className={s.wrapper}>

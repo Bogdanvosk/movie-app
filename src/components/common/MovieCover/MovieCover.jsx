@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import s from './MovieCover.module.scss';
 
 const MovieCover = ({ cover, className = '' }) => {
-  return <img className={cn(s.cover, className)} src={cover?.src} alt='Cover' />;
+  return (
+    <img className={cn(s.cover, className)} src={cover?.src} alt='Cover' />
+  );
 };
 
 export default MovieCover;
