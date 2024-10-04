@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { FormProvider, useForm } from 'react-hook-form';
@@ -11,6 +10,8 @@ import {
 } from '../../../store/features/movies';
 import useFormPersist from 'react-hook-form-persist';
 import useScreenWidth from '../../../hooks/useScreenWidth';
+import { formInputs } from '../../../constants';
+import { useModalContext } from '../ModalPovider/ModalPovider';
 
 import GridLayout from '../GridLayout/GridLayout';
 import Label from '../Label/Label';
@@ -21,7 +22,13 @@ import Dropzone from '../Dropzone/Dropzone';
 
 import s from './Form.module.scss';
 
-const Form = ({ close, item = null, className = '' }) => {
+const Form = () => {
+  const {
+    hideModal,
+    store: { modalProps },
+  } = useModalContext();
+  const item = modalProps?.item || null;
+
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -54,14 +61,14 @@ const Form = ({ close, item = null, className = '' }) => {
     }
 
     window.localStorage.removeItem('form');
-    close();
+    hideModal();
   });
 
   const onDeleteMovie = () => {
     dispatch(deleteMovieAction(item.id));
 
     window.localStorage.removeItem('form');
-    close();
+    hideModal();
   };
 
   useFormPersist('form', {
@@ -95,35 +102,28 @@ const Form = ({ close, item = null, className = '' }) => {
 
   return (
     <FormProvider {...methods}>
-      <form className={cn(s.form, className)} onSubmit={onSubmit}>
+      <form className={s.form} onSubmit={onSubmit}>
         <GridLayout>
-          <Label title='Название' fieldName='name'>
-            <Input
-              placeholder='Введите название'
-              type='text'
-              fieldName='name'
-            />
-          </Label>
-          <Label title='Жанр' fieldName='genre'>
-            <Input placeholder='Введите жанр' type='text' fieldName='genre' />
-          </Label>
-          <Label title='Год выпуска' fieldName='year'>
-            <Input
-              placeholder='Введите год выпуска'
-              type='number'
-              fieldName='year'
-            />
-          </Label>
-          <Label title='Длительность' fieldName='duration'>
-            <Input
-              placeholder='Длительность в минутах'
-              type='number'
-              fieldName='duration'
-            />
-          </Label>
-          <Label title='Рецензия' className={s.review} fieldName='review'>
-            <Textarea fieldName='review' />
-          </Label>
+          {formInputs.map((input) => {
+            return (
+              <Label
+                key={input.fieldName}
+                title={input.title}
+                fieldName={input.fieldName}
+                className={input.fieldName === 'review' ? s.review : ''}
+              >
+                {input.fieldName === 'review' ? (
+                  <Textarea fieldName='review' />
+                ) : (
+                  <Input
+                    placeholder={input.placeholder}
+                    type={input.type}
+                    fieldName={input.fieldName}
+                  />
+                )}
+              </Label>
+            );
+          })}
 
           <div className={s.dropzone}>
             <Dropzone name='cover' />
@@ -167,19 +167,3 @@ const Form = ({ close, item = null, className = '' }) => {
 };
 
 export default Form;
-
-Form.propTypes = {
-  close: PropTypes.func,
-  className: PropTypes.string,
-  item: PropTypes.shape({
-    name: PropTypes.string,
-    genre: PropTypes.string,
-    year: PropTypes.string,
-    duration: PropTypes.string,
-    review: PropTypes.string,
-    cover: PropTypes.shape({
-      src: PropTypes.string,
-      name: PropTypes.string,
-    }),
-  }),
-};

@@ -1,22 +1,18 @@
-import useModal from '../../../hooks/useModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useModalContext } from '../../common/ModalPovider/ModalPovider';
 import { fetchMoviesAction } from '../../../store/features/movies';
 import { selectAllMovies } from '../../../store/features/movies/selectors';
 
 import Typography from '../../common/Typography/Typography';
 import Button from '../../common/Button/Button';
-import Form from '../../common/Form/Form';
 import Container from '../../common/Container/Container';
-import Modal from '../../common/Modal/Modal';
 import MoviesItems from '../../common/MoviesItems/MoviesItems';
 import SearchInput from '../../common/SearchInput/SearchInput';
 
-import s from './HomePage.module.scss';
-
 const HomePage = () => {
-  const [isShowingModal, toggle] = useModal();
+  const { showModal } = useModalContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const allMovies = useSelector(selectAllMovies);
@@ -27,17 +23,18 @@ const HomePage = () => {
     !searchValParam && dispatch(fetchMoviesAction());
   }, [dispatch, searchParams]);
 
+  const onShowModal = () => {
+    showModal('add', {});
+  };
+
   return (
     <>
       <Typography tag='h1'>Movie app</Typography>
       <Container>
         <SearchInput />
-        <Button iconName='plus' onClick={toggle}>
+        <Button iconName='plus' onClick={onShowModal}>
           Добавить фильм
         </Button>
-        <Modal closeModal={toggle} isShowing={isShowingModal}>
-          <Form close={toggle} className={s.addForm} />
-        </Modal>
         <MoviesItems items={allMovies} />
       </Container>
     </>
